@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en" style="color-scheme: dark light">
+<head>
+<meta charset="utf-8">
+<title>Nova — Set up workspace</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#1a1612" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f7f5f0" media="(prefers-color-scheme: light)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-canvas:      oklch(15% 0.005 60);
+    --bg-surface:     oklch(18.5% 0.006 60);
+    --bg-elevated:    oklch(22% 0.007 60);
+    --bg-sunken:      oklch(12% 0.004 60);
+    --border-subtle:  oklch(25% 0.008 60);
+    --border-default: oklch(32% 0.010 60);
+    --text-primary:   oklch(96% 0.005 80);
+    --text-secondary: oklch(72% 0.008 70);
+    --text-tertiary:  oklch(55% 0.008 70);
+    --accent:         oklch(88% 0.18 130);
+    --accent-fg:      oklch(15% 0.005 60);
+    --danger:         oklch(70% 0.18 25);
+    --font-display:   "Geist", system-ui, sans-serif;
+    --font-body:      "Geist", system-ui, sans-serif;
+    --font-mono:      "JetBrains Mono", ui-monospace, monospace;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg-canvas:      oklch(98.5% 0.004 80);
+      --bg-surface:     oklch(96% 0.005 80);
+      --bg-elevated:    oklch(99% 0.003 80);
+      --bg-sunken:      oklch(93% 0.006 80);
+      --border-subtle:  oklch(89% 0.006 80);
+      --border-default: oklch(82% 0.007 80);
+      --text-primary:   oklch(20% 0.008 70);
+      --text-secondary: oklch(40% 0.009 70);
+      --text-tertiary:  oklch(55% 0.008 70);
+      --accent:         oklch(62% 0.18 130);
+      --accent-fg:      oklch(99% 0.003 80);
+    }
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--bg-canvas); color: var(--text-primary); font-family: var(--font-body); -webkit-font-smoothing: antialiased; }
+
+  /* ═══════════════════════════════════════════════════════════════════════
+     Floating mesh gradient blob constellation — same system as login.
+     ═══════════════════════════════════════════════════════════════════════ */
+  .stage {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    overflow: hidden;
+    transform: translate3d(calc(var(--mx, 0) * 1px), calc(var(--my, 0) * 1px), 0);
+    transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.55;
+    will-change: transform;
+  }
+  .blob.b1 { width: 520px; height: 520px; top: -120px; left: -100px;
+    background: radial-gradient(circle, oklch(72% 0.20 130), transparent 60%);
+    animation: drift-1 14s ease-in-out infinite alternate; }
+  .blob.b2 { width: 440px; height: 440px; top: 12%;   right: -120px;
+    background: radial-gradient(circle, oklch(64% 0.18 235), transparent 60%);
+    animation: drift-2 16s ease-in-out infinite alternate; opacity: 0.55; }
+  .blob.b3 { width: 580px; height: 580px; bottom: -160px; right: 8%;
+    background: radial-gradient(circle, oklch(68% 0.18 30), transparent 60%);
+    animation: drift-3 12s ease-in-out infinite alternate; opacity: 0.55; }
+  .blob.b4 { width: 380px; height: 380px; bottom: 4%; left: 18%;
+    background: radial-gradient(circle, oklch(60% 0.16 320), transparent 60%);
+    animation: drift-4 10s ease-in-out infinite alternate; opacity: 0.50; }
+  @keyframes drift-1 {
+    0%   { transform: translate(0, 0) scale(1); }
+    50%  { transform: translate(180px, 220px) scale(1.2); }
+    100% { transform: translate(-140px, 120px) scale(0.85); }
+  }
+  @keyframes drift-2 {
+    0%   { transform: translate(0, 0) scale(1); }
+    50%  { transform: translate(-220px, 180px) scale(1.25); }
+    100% { transform: translate(140px, -160px) scale(0.8); }
+  }
+  @keyframes drift-3 {
+    0%   { transform: translate(0, 0) scale(1); }
+    50%  { transform: translate(160px, -200px) scale(1.15); }
+    100% { transform: translate(-180px, -100px) scale(1.3); }
+  }
+  @keyframes drift-4 {
+    0%   { transform: translate(0, 0) scale(1); }
+    50%  { transform: translate(-160px, -220px) scale(0.75); }
+    100% { transform: translate(200px, 150px) scale(1.25); }
+  }
+  .grain {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    opacity: 0.04; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='160' height='160' filter='url(%23n)' opacity='0.85'/></svg>");
+    background-size: 160px;
+  }
+  .spotlight {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background: radial-gradient(circle 280px at calc(50% + (var(--mx, 0) * 2.4px)) calc(50% + (var(--my, 0) * 2.4px)),
+                                color-mix(in oklab, var(--accent) 14%, transparent), transparent 70%);
+    transition: background 400ms ease-out;
+    mix-blend-mode: screen;
+  }
+  /* Reduce-motion users get static layout — drift + parallax suppressed. */
+  @media (prefers-reduced-motion: reduce) {
+    .blob { animation: none !important; }
+    .stage, .spotlight { transition: none !important; }
+    .starter { transition: none !important; }
+    .btn { transition: none !important; }
+  }
+
+  .shell { position: relative; min-height: 100vh; display: grid; place-items: center; padding: 32px 20px; z-index: 1; }
+  .card { width: 100%; max-width: 560px; background: var(--bg-elevated); border: 1px solid var(--border-default); border-radius: 14px; padding: 32px;
+    box-shadow: 0 24px 60px rgba(0,0,0,.35), 0 0 0 1px color-mix(in oklab, var(--accent) 8%, transparent);
+  }
+
+  .step-meta { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 10px; }
+  h1 { font-family: var(--font-display); font-weight: 600; font-size: 24px; letter-spacing: -.02em; margin: 0 0 8px; color: var(--text-primary); }
+  h1 .ws { color: var(--accent); }
+  .lede { font-size: 13.5px; color: var(--text-secondary); margin: 0 0 28px; line-height: 1.55; }
+
+  .section-h { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .14em; color: var(--text-secondary); text-transform: uppercase; margin: 24px 0 12px; font-weight: 500; }
+
+  /* Starter cards — taller, content-first. Each card has icon + title + desc +
+     preview swatches + meta footer (e.g. "22 palettes · Inter · 34 spacing"). */
+  .starters { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .starter {
+    position: relative; padding: 18px 18px 14px;
+    border: 1.5px solid var(--border-default); border-radius: 12px;
+    cursor: pointer;
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    font: inherit;
+    display: flex; flex-direction: column; gap: 10px;
+    min-height: 200px;
+    transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease, background-color .15s ease;
+    text-align: left;
+    touch-action: manipulation;
+    overflow: hidden;
+  }
+  .starter::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0;
+    background: radial-gradient(circle at 0% 0%, color-mix(in oklab, var(--accent) 14%, transparent) 0%, transparent 50%);
+    transition: opacity .2s ease;
+  }
+  .starter:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in oklab, var(--accent) 35%, var(--border-default));
+    box-shadow: 0 12px 28px rgba(0,0,0,.22);
+  }
+  .starter:hover::before { opacity: 1; }
+  .starter:focus-visible {
+    outline: 0;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 28%, transparent);
+  }
+  .starter.on {
+    border: 2px solid var(--accent);
+    background: color-mix(in oklab, var(--accent) 5%, var(--bg-surface));
+    box-shadow: 0 0 0 4px color-mix(in oklab, var(--accent) 16%, transparent), 0 8px 22px rgba(0,0,0,.24);
+    padding: 17px 17px 13px;
+  }
+  .starter.on::before { opacity: 1; }
+  .starter.on::after {
+    content: "✓";
+    position: absolute; top: 12px; right: 12px;
+    width: 22px; height: 22px;
+    background: var(--accent); color: var(--accent-fg);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; line-height: 1;
+    box-shadow: 0 2px 8px color-mix(in oklab, var(--accent) 50%, transparent);
+  }
+  /* Card icon — sets visual character (Empty = dashed circle, Tailwind = sparkles) */
+  .starter .ico {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-default);
+    display: inline-flex; align-items: center; justify-content: center;
+    color: var(--text-secondary);
+    flex: none;
+    position: relative; z-index: 1;
+  }
+  .starter[data-id="empty"] .ico { border-style: dashed; color: var(--text-tertiary); }
+  .starter[data-id="tailwind"] .ico { background: color-mix(in oklab, var(--accent) 15%, var(--bg-elevated)); border-color: color-mix(in oklab, var(--accent) 40%, var(--border-default)); color: var(--accent); }
+  .starter .ico svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .starter b { display: block; font-family: var(--font-display); font-weight: 600; font-size: 15px; color: var(--text-primary); padding-right: 28px; letter-spacing: -.005em; position: relative; z-index: 1; }
+  .starter .desc { font-size: 12.5px; color: var(--text-secondary); line-height: 1.55; position: relative; z-index: 1; flex: 1; }
+  .starter .swatches { display: flex; gap: 4px; margin-top: 4px; position: relative; z-index: 1; }
+  .starter .swatches span { flex: 1; height: 16px; border-radius: 4px; border: 1px solid rgba(255,255,255,.06); box-shadow: 0 1px 3px rgba(0,0,0,.12); }
+  /* Empty starter — intentional minimal: faint dashed lines, not "broken" empty boxes */
+  .starter[data-id="empty"] .swatches span {
+    background: transparent !important;
+    border: 1px dashed color-mix(in oklab, var(--text-tertiary) 50%, transparent);
+    box-shadow: none;
+  }
+  /* Meta footer — quick scan of what's loaded */
+  .starter .meta {
+    display: flex; align-items: center; gap: 6px;
+    font-family: var(--font-mono); font-size: 10px;
+    color: var(--text-tertiary); letter-spacing: .04em; text-transform: uppercase;
+    padding-top: 8px; margin-top: auto;
+    border-top: 1px solid var(--border-subtle);
+    position: relative; z-index: 1;
+  }
+  .starter.on .meta { color: var(--accent); }
+  .starter .meta b { font-family: var(--font-mono); font-weight: 600; font-size: 10px; color: inherit; padding-right: 0; }
+  .starter .meta .sep { opacity: .4; }
+
+  /* Brand color picker */
+  .brand-pick { display: grid; grid-template-columns: 60px 1fr; gap: 12px; align-items: center; }
+  .brand-swatch { width: 60px; height: 60px; border-radius: 10px; border: 1px solid var(--border-default); background: var(--accent); position: relative; }
+  .input {
+    background: var(--bg-sunken);
+    border: 1px solid var(--border-default);
+    color: var(--text-primary);
+    padding: 12px 14px; border-radius: 8px;
+    font: inherit; font-size: 14px; font-weight: 500; letter-spacing: .04em;
+    width: 100%; outline: 0;
+    font-family: var(--font-mono);
+    transition: border-color .12s ease, box-shadow .12s ease;
+    touch-action: manipulation;
+  }
+  .input:focus-visible { outline: 0; border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 22%, transparent); }
+  input[type="color"] { -webkit-appearance: none; appearance: none; border: 0; padding: 0; width: 60px; height: 60px; border-radius: 10px; cursor: pointer; background: none; box-shadow: 0 4px 12px rgba(0,0,0,.18); }
+  input[type="color"]:focus-visible { outline: 0; box-shadow: 0 4px 12px rgba(0,0,0,.18), 0 0 0 3px color-mix(in oklab, var(--accent) 32%, transparent); }
+  input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; border-radius: 10px; }
+  input[type="color"]::-webkit-color-swatch { border: 1px solid var(--border-default); border-radius: 10px; }
+
+  /* Brand ramp preview — 5 stops auto-derived from brand color hue */
+  .brand-ramp { display: flex; gap: 4px; margin-top: 12px; }
+  .brand-ramp span {
+    flex: 1; height: 28px; border-radius: 5px;
+    border: 1px solid rgba(255,255,255,.06);
+    box-shadow: 0 1px 3px rgba(0,0,0,.12);
+  }
+  .brand-ramp-cap {
+    font-family: var(--font-mono); font-size: 10.5px;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--text-secondary); margin-top: 10px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .brand-ramp-cap::before {
+    content: ""; width: 4px; height: 4px; border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .btn { background: var(--accent); color: var(--accent-fg); border: 1px solid var(--accent); padding: 0 18px; height: 44px; border-radius: 8px; font: inherit; font-size: 13.5px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px; transition: transform .08s ease, box-shadow .12s ease, background .12s ease; touch-action: manipulation; box-shadow: 0 4px 16px color-mix(in oklab, var(--accent) 32%, transparent); }
+  .btn:hover { transform: translateY(-1px); box-shadow: 0 8px 22px color-mix(in oklab, var(--accent) 40%, transparent); }
+  .btn:focus-visible { outline: 0; box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 32%, transparent), 0 0 0 1px var(--accent); }
+  .btn svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* Ghost = quieter, no shadow, smaller visual weight than primary */
+  .ghost { background: transparent; color: var(--text-secondary); border: 1px solid var(--border-default); box-shadow: none; height: 40px; padding: 0 14px; font-weight: 500; }
+  .ghost:hover { background: var(--bg-surface); color: var(--text-primary); box-shadow: none; transform: none; }
+  .ghost:focus-visible { outline: 0; border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 22%, transparent); color: var(--text-primary); }
+
+  .row { display: flex; justify-content: flex-end; gap: 12px; margin-top: 32px; align-items: center; }
+
+  /* Brand section — caption changes per starter (full ramp vs metadata only) */
+  .brand-mode-hint {
+    margin-top: 6px;
+    font-family: var(--font-mono); font-size: 10.5px;
+    letter-spacing: .04em;
+    color: var(--text-tertiary);
+    line-height: 1.5;
+  }
+  .brand-mode-hint b { color: var(--text-secondary); font-weight: 600; }
+</style>
+</head>
+
+<body>
+  <!-- Mesh blob constellation — pure CSS animated background -->
+  <div class="stage" aria-hidden="true">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+    <div class="blob b4"></div>
+  </div>
+  <div class="spotlight" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <div class="shell">
+    <div class="card">
+      <div class="step-meta">Welcome · workspace setup</div>
+      <h1>Set up <span class="ws" id="ws-name">your workspace</span></h1>
+      <p class="lede">Pick a starter and a brand color. You can change everything later in the editor.</p>
+
+      <div class="section-h">1. Starter</div>
+      <div class="starters" id="starters">
+        <button type="button" class="starter" data-id="empty">
+          <span class="ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-dasharray="3 3"/></svg>
+          </span>
+          <b>Empty</b>
+          <div class="desc">Start from scratch — no palettes, no semantic tokens. Build every layer manually as you go.</div>
+          <div class="swatches"><span></span><span></span><span></span><span></span></div>
+          <div class="meta"><b>0</b>&nbsp;palettes <span class="sep">·</span> <b>0</b>&nbsp;tokens <span class="sep">·</span> blank&nbsp;canvas</div>
+        </button>
+        <button type="button" class="starter on" data-id="tailwind">
+          <span class="ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5L12 3z"/><path d="M19 14l.8 2.4L22 17l-2.2 1L19 20l-.8-2L16 17l2.2-.6L19 14z"/></svg>
+          </span>
+          <b>Tailwind-inspired</b>
+          <div class="desc">22 palettes (50–950), Inter + JetBrains Mono, full Tailwind spacing &amp; radius scales — a complete primitive base. You map the semantic roles &amp; components.</div>
+          <div class="swatches">
+            <span style="background:oklch(72% 0.18 250)"></span>
+            <span style="background:oklch(70% 0.16 150)"></span>
+            <span style="background:oklch(72% 0.18 30)"></span>
+            <span style="background:oklch(68% 0.18 290)"></span>
+          </div>
+          <div class="meta"><b>22</b>&nbsp;palettes <span class="sep">·</span> <b>34</b>&nbsp;spacing <span class="sep">·</span> Inter</div>
+        </button>
+      </div>
+
+      <h2 class="section-h" id="lbl-brand">2. Brand color</h2>
+      <div class="brand-pick" role="group" aria-labelledby="lbl-brand">
+        <input type="color" id="brand-color" value="#c8e34a" aria-label="Brand color picker">
+        <input id="brand-hex" class="input" type="text" value="#C8E34A" placeholder="#C8E34A …" maxlength="7" aria-label="Brand color hex value" spellcheck="false" autocomplete="off" inputmode="text">
+      </div>
+      <div class="brand-ramp" id="brand-ramp" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="brand-ramp-cap" id="brand-ramp-cap">Generates 11-Stop Ramp</div>
+      <div class="brand-mode-hint" id="brand-mode-hint" hidden>Empty starter — your color is stored as workspace metadata, no palette generated. Add palettes manually inside the editor.</div>
+
+      <div class="row">
+        <button type="button" class="btn ghost" id="btn-finish-dash">Create &amp; go to dashboard</button>
+        <button type="button" class="btn" id="btn-finish">
+          Create &amp; open editor
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+<!-- (WebGL shader removed — replaced by pure CSS mesh blob constellation.) -->
+
+
+<script>
+  // Cursor parallax — drives .stage translate3d + .spotlight offset (px units).
+  // Note: reduce-motion guard removed per user request.
+  (function setupParallax() {
+    let raf = null;
+    document.addEventListener('mousemove', (e) => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        const x = ((e.clientX / window.innerWidth) - 0.5) * 24;
+        const y = ((e.clientY / window.innerHeight) - 0.5) * 24;
+        document.documentElement.style.setProperty('--mx', x.toFixed(2));
+        document.documentElement.style.setProperty('--my', y.toFixed(2));
+        raf = null;
+      });
+    }, { passive: true });
+  })();
+
+  // Hydrate from session — require pendingWorkspace (came from register)
+  const session = (() => {
+    try { return JSON.parse(localStorage.getItem('bb.session')); } catch (e) { return null; }
+  })();
+  if (!session) { window.location.replace('/login.html'); throw new Error('no session'); }
+
+  // If user is already onboarded (has activeWorkspaceId), skip to editor
+  if (session.activeWorkspaceId) { window.location.replace('/index.html'); throw new Error('already onboarded'); }
+
+  const pending = session.pendingWorkspace || {
+    id: 'my-workspace',
+    name: 'My Workspace',
+    tagline: 'design-tokens.v0',
+  };
+  document.getElementById('ws-name').textContent = pending.name;
+
+  // Starter selection — also toggles brand-section explainer between
+  // "generates ramp" and "stored as metadata" depending on whether the
+  // chosen starter will materialize the brand color into a palette.
+  let starter = 'tailwind';
+  const _starterRampEl    = document.getElementById('brand-ramp');
+  const _starterRampCapEl = document.getElementById('brand-ramp-cap');
+  const _starterModeHintEl = document.getElementById('brand-mode-hint');
+  const syncBrandSection = () => {
+    const willSeed = starter !== 'empty';
+    if (_starterRampEl)     _starterRampEl.hidden    = !willSeed;
+    if (_starterRampCapEl)  _starterRampCapEl.hidden = !willSeed;
+    if (_starterModeHintEl) _starterModeHintEl.hidden = willSeed;
+  };
+  document.querySelectorAll('.starter').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.starter').forEach(o => o.classList.remove('on'));
+      btn.classList.add('on');
+      starter = btn.dataset.id;
+      syncBrandSection();
+    });
+  });
+  syncBrandSection();
+
+  // Brand color sync (color picker ↔ hex input) + live 5-stop ramp preview.
+  const colorEl = document.getElementById('brand-color');
+  const hexEl = document.getElementById('brand-hex');
+  const rampEl = document.getElementById('brand-ramp');
+
+  // Convert hex → OKLCH (sRGB → linear → LMS → OKLab → OKLCh) for ramp generation.
+  function hexToOklch(hex) {
+    hex = hex.replace('#', '');
+    if (hex.length !== 6) return null;
+    const r = parseInt(hex.slice(0, 2), 16) / 255;
+    const g = parseInt(hex.slice(2, 4), 16) / 255;
+    const b = parseInt(hex.slice(4, 6), 16) / 255;
+    const lin = c => c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+    const rl = lin(r), gl = lin(g), bl = lin(b);
+    const l = 0.4122214708 * rl + 0.5363325363 * gl + 0.0514459929 * bl;
+    const m = 0.2119034982 * rl + 0.6806995451 * gl + 0.1073969566 * bl;
+    const s = 0.0883024619 * rl + 0.2817188376 * gl + 0.6299787005 * bl;
+    const l_ = Math.cbrt(l), m_ = Math.cbrt(m), s_ = Math.cbrt(s);
+    const L = 0.2104542553 * l_ + 0.7936177850 * m_ - 0.0040720468 * s_;
+    const a = 1.9779984951 * l_ - 2.4285922050 * m_ + 0.4505937099 * s_;
+    const b2 = 0.0259040371 * l_ + 0.7827717662 * m_ - 0.8086757660 * s_;
+    const C = Math.sqrt(a * a + b2 * b2);
+    let H = Math.atan2(b2, a) * 180 / Math.PI;
+    if (H < 0) H += 360;
+    return { L: L * 100, C, H };
+  }
+
+  function updateRamp() {
+    const hex = hexEl.value.trim();
+    if (!/^#[0-9a-f]{6}$/i.test(hex)) return;
+    const ok = hexToOklch(hex);
+    if (!ok) return;
+    const Ls = [92, 78, 60, 42, 22];
+    const chroma = Math.min(0.18, ok.C);
+    const spans = rampEl.querySelectorAll('span');
+    Ls.forEach((L, i) => {
+      const c = chroma * (1 - Math.abs(L - 60) / 90);
+      if (spans[i]) spans[i].style.background = `oklch(${L}% ${Math.max(0, c).toFixed(4)} ${ok.H.toFixed(1)})`;
+    });
+  }
+
+  colorEl.addEventListener('input', () => { hexEl.value = colorEl.value.toUpperCase(); updateRamp(); });
+  hexEl.addEventListener('input', () => {
+    const v = hexEl.value.trim();
+    if (/^#[0-9a-f]{6}$/i.test(v)) { colorEl.value = v.toLowerCase(); updateRamp(); }
+  });
+  updateRamp(); // initial paint
+
+  // Finish — commit the configured workspace to the session, then redirect.
+  // BOTH exits commit (the secondary used to navigate away with the workspace
+  // still "pending" → it was silently abandoned and never appeared on the
+  // dashboard). Now "go to dashboard" creates the workspace too.
+  function commitWorkspace(dest) {
+    const workspace = {
+      id: pending.id,
+      name: pending.name,
+      tagline: pending.tagline,
+      starter,
+      brandColor: hexEl.value.trim() || '#C8E34A',
+      createdAt: new Date().toISOString().slice(0, 10),
+    };
+    const next = {
+      ...session,
+      workspaces: [...(session.workspaces || []), workspace],
+      activeWorkspaceId: dest === '/index.html' ? workspace.id : null,
+    };
+    delete next.pendingWorkspace;
+    localStorage.setItem('bb.session', JSON.stringify(next));
+    window.location.href = dest;
+  }
+  document.getElementById('btn-finish').addEventListener('click', () => commitWorkspace('/index.html'));
+  document.getElementById('btn-finish-dash').addEventListener('click', () => commitWorkspace('/dashboard.html'));
+</script>
+</body>
+</html>

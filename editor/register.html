@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Nova — Create account</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-canvas:      oklch(15% 0.005 60);
+    --bg-surface:     oklch(18.5% 0.006 60);
+    --bg-elevated:    oklch(22% 0.007 60);
+    --bg-sunken:      oklch(12% 0.004 60);
+    --border-subtle:  oklch(25% 0.008 60);
+    --border-default: oklch(32% 0.010 60);
+    --text-primary:   oklch(96% 0.005 80);
+    --text-secondary: oklch(72% 0.008 70);
+    --text-tertiary:  oklch(55% 0.008 70);
+    --accent:         oklch(88% 0.18 130);
+    --accent-fg:      oklch(15% 0.005 60);
+    --danger:         oklch(70% 0.18 25);
+    --font-display:   "Geist", system-ui, sans-serif;
+    --font-body:      "Geist", system-ui, sans-serif;
+    --font-mono:      "JetBrains Mono", ui-monospace, monospace;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg-canvas:      oklch(98.5% 0.004 80);
+      --bg-surface:     oklch(96% 0.005 80);
+      --bg-elevated:    oklch(99% 0.003 80);
+      --bg-sunken:      oklch(93% 0.006 80);
+      --border-subtle:  oklch(89% 0.006 80);
+      --border-default: oklch(82% 0.007 80);
+      --text-primary:   oklch(20% 0.008 70);
+      --text-secondary: oklch(40% 0.009 70);
+      --text-tertiary:  oklch(55% 0.008 70);
+      --accent:         oklch(62% 0.18 130);
+      --accent-fg:      oklch(99% 0.003 80);
+    }
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--bg-canvas); color: var(--text-primary); font-family: var(--font-body); -webkit-font-smoothing: antialiased; }
+
+  .backdrop { position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(50% 50% at 12% 10%,  color-mix(in oklab, oklch(60% 0.18 130) 35%, transparent) 0%, transparent 60%),
+      radial-gradient(48% 48% at 88% 18%,  color-mix(in oklab, oklch(60% 0.18 245) 30%, transparent) 0%, transparent 60%),
+      radial-gradient(55% 55% at 92% 90%,  color-mix(in oklab, oklch(60% 0.18 25)  30%, transparent) 0%, transparent 60%),
+      radial-gradient(45% 45% at 8%  88%,  color-mix(in oklab, oklch(60% 0.18 340) 25%, transparent) 0%, transparent 60%);
+  }
+  .grid-noise { position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: .25; mix-blend-mode: overlay;
+    background-image: linear-gradient(var(--border-subtle) 1px, transparent 1px), linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px);
+    background-size: 32px 32px; }
+
+  .shell { position: relative; min-height: 100vh; display: grid; place-items: center; padding: 32px 20px; z-index: 1; }
+  .card { width: 100%; max-width: 460px; background: var(--bg-elevated); border: 1px solid var(--border-default); border-radius: 14px; padding: 32px; box-shadow: 0 24px 60px rgba(0,0,0,.35), 0 0 0 1px color-mix(in oklab, var(--accent) 8%, transparent); }
+
+  .brand { display: flex; align-items: center; gap: 10px; margin-bottom: 24px; }
+  .brand .mark { width: 32px; height: 32px; border-radius: 7px; background: var(--accent); color: var(--accent-fg); display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 15px; }
+  .brand .name { font-size: 14px; font-weight: 600; letter-spacing: -.01em; }
+  .brand .sub { font-family: var(--font-mono); font-size: 10px; color: var(--text-tertiary); letter-spacing: .08em; margin-top: 2px; }
+
+  h1 { font-family: var(--font-display); font-weight: 600; font-size: 24px; letter-spacing: -.02em; margin: 0 0 6px; }
+  .lede { font-size: 13.5px; color: var(--text-secondary); margin: 0 0 22px; }
+
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+  .field-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: .1em; color: var(--text-secondary); text-transform: uppercase; display: flex; align-items: center; gap: 6px; }
+  .field-label .hint { color: var(--text-tertiary); font-weight: normal; text-transform: none; letter-spacing: 0; font-size: 10.5px; font-family: var(--font-body); margin-left: auto; }
+  .input { background: var(--bg-sunken); border: 1px solid var(--border-default); color: var(--text-primary); padding: 10px 12px; border-radius: 7px; font: inherit; font-size: 13px; width: 100%; outline: 0; transition: border-color .12s, box-shadow .12s; }
+  .input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 18%, transparent); }
+  .input.err { border-color: var(--danger); }
+  .err-msg { color: var(--danger); font-size: 11.5px; margin-top: 4px; font-family: var(--font-mono); }
+
+  .btn { background: var(--accent); color: var(--accent-fg); border: 1px solid var(--accent); padding: 0 14px; height: 40px; border-radius: 7px; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: 8px; transition: transform .08s; margin-top: 4px; }
+  .btn:hover { transform: translateY(-1px); }
+  .btn svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  .foot { margin-top: 16px; text-align: center; font-size: 12.5px; color: var(--text-secondary); }
+  .foot a { color: var(--accent); text-decoration: none; font-weight: 500; }
+  .foot a:hover { text-decoration: underline; }
+
+  .terms { font-size: 11.5px; color: var(--text-tertiary); margin-top: 14px; text-align: center; line-height: 1.5; }
+  .terms a { color: var(--text-secondary); }
+</style>
+</head>
+
+<body>
+  <div class="backdrop"></div>
+  <div class="grid-noise"></div>
+
+  <div class="shell">
+    <div class="card">
+      <div class="brand">
+        <div class="mark">B</div>
+        <div>
+          <div class="name">Nova</div>
+          <div class="sub">design-tokens · v0</div>
+        </div>
+      </div>
+
+      <h1>Create your account</h1>
+      <p class="lede">An AI-native design token builder. Set up your workspace in a few seconds.</p>
+
+      <form id="form" novalidate>
+        <div class="row2">
+          <div class="field">
+            <label class="field-label" for="name">Your name</label>
+            <input id="name" class="input" type="text" placeholder="Jane Doe" required autocomplete="name">
+          </div>
+          <div class="field">
+            <label class="field-label" for="email">Email</label>
+            <input id="email" class="input" type="email" placeholder="you@studio.com" required autocomplete="email">
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="workspace">Workspace name <span class="hint">e.g. brand or team</span></label>
+          <input id="workspace" class="input" type="text" placeholder="Acme Design" required>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="tagline">Tagline <span class="hint">optional</span></label>
+          <input id="tagline" class="input" type="text" placeholder="design-tokens.v0">
+        </div>
+
+        <div class="err-msg" id="err" hidden></div>
+
+        <button class="btn" type="submit">
+          Create account & continue
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </button>
+      </form>
+
+      <p class="foot">
+        Already have an account? <a href="/login.html">Sign in →</a>
+      </p>
+
+      <p class="terms">
+        By continuing you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>. We use a passwordless magic-link sign-in.
+      </p>
+    </div>
+  </div>
+
+<script>
+  const form = document.getElementById('form');
+  const nameEl = document.getElementById('name');
+  const emailEl = document.getElementById('email');
+  const wsEl = document.getElementById('workspace');
+  const taglineEl = document.getElementById('tagline');
+  const errEl = document.getElementById('err');
+
+  function isEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+
+  function slugify(s) {
+    return s.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  }
+
+  function showErr(msg) {
+    errEl.textContent = msg;
+    errEl.hidden = false;
+  }
+
+  function clearErr() { errEl.hidden = true; }
+
+  [nameEl, emailEl, wsEl].forEach(el => el.addEventListener('input', () => {
+    el.classList.remove('err');
+    clearErr();
+  }));
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = nameEl.value.trim();
+    const email = emailEl.value.trim();
+    const ws = wsEl.value.trim();
+    const tag = taglineEl.value.trim();
+
+    let firstError = null;
+    if (!name)             { nameEl.classList.add('err');  firstError = firstError || 'Your name is required'; }
+    if (!isEmail(email))   { emailEl.classList.add('err'); firstError = firstError || 'Enter a valid email'; }
+    if (!ws)               { wsEl.classList.add('err');    firstError = firstError || 'Workspace name is required'; }
+    if (firstError) { showErr(firstError); return; }
+
+    // Build session — onboarding will append the workspace
+    const session = {
+      user: { name, email, createdAt: new Date().toISOString().slice(0, 10) },
+      workspaces: [],
+      pendingWorkspace: {
+        id: slugify(ws),
+        name: ws,
+        tagline: tag || 'design-tokens.v0',
+      },
+      activeWorkspaceId: null,
+    };
+    localStorage.setItem('bb.session', JSON.stringify(session));
+    window.location.href = '/onboarding.html';
+  });
+</script>
+</body>
+</html>

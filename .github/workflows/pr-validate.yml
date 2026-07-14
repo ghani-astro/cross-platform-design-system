@@ -1,0 +1,88 @@
+name: PR Validate
+
+on:
+  pull_request:
+    paths:
+      - "tokens/**"
+      - "generators/**"
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Validate token JSON files parse
+        run: |
+          node -e 'JSON.parse(require("fs").readFileSync("tokens/tokens.json", "utf8")); console.log("tokens/tokens.json parses OK");'
+          node -e 'JSON.parse(require("fs").readFileSync("tokens/platform-names.json", "utf8")); console.log("tokens/platform-names.json parses OK");'
+
+      - name: Run generators
+        run: |
+          node generators/android.mjs
+          node generators/ios.mjs
+          node generators/web.mjs
+
+      - name: Collect generated file changes
+        # Generated outputs live in packages/ and Sources/, outside tokens/
+        # and generators/. PRs are not required to commit regenerated files;
+        # this diff is informational only.
+        run: |
+          git status --porcelain -- packages Sources > /tmp/generated-changes.txt
+          echo "Generated file changes:"
+          cat /tmp/generated-changes.txt
+
+      - name: Post or update PR comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const marker = '<!-- design-tokens-pr-validate -->';
+            const raw = fs.readFileSync('/tmp/generated-changes.txt', 'utf8').trim();
+            const list = raw
+              ? raw.split('\n').map(line => `- \`${line.trim()}\``).join('\n')
+              : '_No generated files changed._';
+            const body = [
+              marker,
+              '### Token generation preview',
+              '',
+              'Token JSON validated and all three generators ran successfully.',
+              '',
+              'Generated files that will change when this PR merges:',
+              '',
+              list,
+              '',
+              '_Regenerated files are committed automatically by the release workflow on merge to main; this PR does not need to include them._',
+            ].join('\n');
+
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            const existing = comments.find(c => c.body && c.body.includes(marker));
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body,
+              });
+            }

@@ -1,0 +1,20 @@
+# macOS
+.DS_Store
+
+# Node
+node_modules/
+
+# Android / Gradle
+packages/android/.gradle/
+packages/android/build/
+packages/android/**/build/
+packages/android/local.properties
+
+# Swift / Xcode
+.build/
+.swiftpm/
+xcuserdata/
+DerivedData/
+
+# Editor scratch
+*.log

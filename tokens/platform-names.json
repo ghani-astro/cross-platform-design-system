@@ -1,0 +1,1430 @@
+{
+  "color": {
+    "color.galaxy.0": {
+      "android": "primaryGalaxy0",
+      "web": "galaxy-0"
+    },
+    "color.galaxy.1": {
+      "android": "primaryGalaxy1",
+      "web": "galaxy-1"
+    },
+    "color.galaxy.2": {
+      "android": "primaryGalaxy2",
+      "web": "galaxy-2"
+    },
+    "color.galaxy.3": {
+      "android": "primaryGalaxy3",
+      "web": "galaxy-3"
+    },
+    "color.galaxy.4": {
+      "android": "primaryGalaxy4",
+      "web": "galaxy-4"
+    },
+    "color.galaxy.5": {
+      "android": "primaryGalaxy5",
+      "web": "galaxy-5"
+    },
+    "color.galaxy.6": {
+      "android": "primaryGalaxy6",
+      "web": "galaxy-6"
+    },
+    "color.galaxy.7": {
+      "android": "primaryGalaxy7",
+      "web": "galaxy-7"
+    },
+    "color.galaxy.8": {
+      "android": "primaryGalaxy8",
+      "web": "galaxy-8"
+    },
+    "color.galaxy.9": {
+      "android": "primaryGalaxy9",
+      "web": "galaxy-9"
+    },
+    "color.galaxy.10": {
+      "android": "primaryGalaxy10",
+      "web": "galaxy-10"
+    },
+    "color.galaxy.11": {
+      "android": "primaryGalaxy11",
+      "web": "galaxy-11"
+    },
+    "color.galaxy.12": {
+      "android": "primaryGalaxy12",
+      "web": "galaxy-12"
+    },
+    "color.galaxy.13": {
+      "android": "primaryGalaxy13",
+      "web": "galaxy-13"
+    },
+    "color.galaxy.14": {
+      "android": "primaryGalaxy14",
+      "web": "galaxy-14"
+    },
+    "color.galaxy.15": {
+      "android": "primaryGalaxy15",
+      "web": "galaxy-15"
+    },
+    "color.nebula.1": {
+      "android": "secondaryNebula1",
+      "web": "nebula-1"
+    },
+    "color.nebula.2": {
+      "android": "secondaryNebula2",
+      "web": "nebula-2"
+    },
+    "color.nebula.3": {
+      "android": "secondaryNebula3",
+      "web": "nebula-3"
+    },
+    "color.nebula.4": {
+      "android": "secondaryNebula4",
+      "web": "nebula-4"
+    },
+    "color.nebula.5": {
+      "android": "secondaryNebula5",
+      "web": "nebula-5"
+    },
+    "color.nebula.6": {
+      "android": "secondaryNebula6",
+      "web": "nebula-6"
+    },
+    "color.nebula.7": {
+      "android": "secondaryNebula7",
+      "web": "nebula-7"
+    },
+    "color.nebula.8": {
+      "android": "secondaryNebula8",
+      "web": "nebula-8"
+    },
+    "color.nebula.9": {
+      "android": "secondaryNebula9",
+      "web": "nebula-9"
+    },
+    "color.nebula.10": {
+      "android": "secondaryNebula10",
+      "web": "nebula-10"
+    },
+    "color.nebula.11": {
+      "android": "secondaryNebula11",
+      "web": "nebula-11"
+    },
+    "color.nebula.12": {
+      "android": "secondaryNebula12",
+      "web": "nebula-12"
+    },
+    "color.nebula.13": {
+      "android": "secondaryNebula13",
+      "web": "nebula-13"
+    },
+    "color.nebula.14": {
+      "android": "secondaryNebula14",
+      "web": "nebula-14"
+    },
+    "color.nebula.15": {
+      "android": "secondaryNebula15",
+      "web": "nebula-15"
+    },
+    "color.neutral.1": {
+      "android": "neutralNeutral1",
+      "web": "neutral-1"
+    },
+    "color.neutral.2": {
+      "android": "neutralNeutral2",
+      "web": "neutral-2"
+    },
+    "color.neutral.3": {
+      "android": "neutralNeutral3",
+      "web": "neutral-3"
+    },
+    "color.neutral.4": {
+      "android": "neutralNeutral4",
+      "web": "neutral-4"
+    },
+    "color.neutral.5": {
+      "android": "neutralNeutral5",
+      "web": "neutral-5"
+    },
+    "color.neutral.6": {
+      "android": "neutralNeutral6",
+      "web": "neutral-6"
+    },
+    "color.neutral.7": {
+      "android": "neutralNeutral7",
+      "web": "neutral-7"
+    },
+    "color.neutral.8": {
+      "android": "neutralNeutral8",
+      "web": "neutral-8"
+    },
+    "color.neutral.9": {
+      "android": "neutralNeutral9",
+      "web": "neutral-9"
+    },
+    "color.neutral.10": {
+      "android": "neutralNeutral10",
+      "web": "neutral-10"
+    },
+    "color.neutral.11": {
+      "android": "neutralNeutral11",
+      "web": "neutral-11"
+    },
+    "color.neutral.12": {
+      "android": "neutralNeutral12",
+      "web": "neutral-12"
+    },
+    "color.neutral.special": {
+      "android": "neutralSpecial",
+      "web": "special"
+    },
+    "color.sysGreen.1": {
+      "android": "sysGreenGr1",
+      "web": "sys.green.gr-1"
+    },
+    "color.sysGreen.2": {
+      "android": "sysGreenGr2",
+      "web": "sys.green.gr-2"
+    },
+    "color.sysGreen.3": {
+      "android": "sysGreenGr3",
+      "web": "sys.green.gr-3"
+    },
+    "color.sysGreen.4": {
+      "android": "sysGreenGr4",
+      "web": "sys.green.gr-4"
+    },
+    "color.sysGreen.5": {
+      "android": "sysGreenGr5",
+      "web": "sys.green.gr-5"
+    },
+    "color.sysGreen.6": {
+      "android": "sysGreenGr6",
+      "web": "sys.green.gr-6"
+    },
+    "color.sysGreen.7": {
+      "android": "sysGreenGr7",
+      "web": "sys.green.gr-7"
+    },
+    "color.sysGreen.8": {
+      "android": "sysGreenGr8",
+      "web": "sys.green.gr-8"
+    },
+    "color.sysGreen.9": {
+      "android": "sysGreenGr9",
+      "web": "sys.green.gr-9"
+    },
+    "color.sysGreen.10": {
+      "android": "sysGreenGr10",
+      "web": "sys.green.gr-10"
+    },
+    "color.sysGreen.11": {
+      "android": "sysGreenGr11",
+      "web": "sys.green.gr-11"
+    },
+    "color.sysGreen.12": {
+      "android": "sysGreenGr12",
+      "web": "sys.green.gr-12"
+    },
+    "color.sysGreen.13": {
+      "android": "sysGreenGr13",
+      "web": "sys.green.gr-13"
+    },
+    "color.sysGreen.14": {
+      "android": "sysGreenGr14",
+      "web": "sys.green.gr-14"
+    },
+    "color.sysGreen.15": {
+      "android": "sysGreenGr15",
+      "web": "sys.green.gr-15"
+    },
+    "color.sysOrange.1": {
+      "android": "sysOrangeOr1",
+      "web": "sys.orange.or-1"
+    },
+    "color.sysOrange.2": {
+      "android": "sysOrangeOr2",
+      "web": "sys.orange.or-2"
+    },
+    "color.sysOrange.3": {
+      "android": "sysOrangeOr3",
+      "web": "sys.orange.or-3"
+    },
+    "color.sysOrange.4": {
+      "android": "sysOrangeOr4",
+      "web": "sys.orange.or-4"
+    },
+    "color.sysOrange.5": {
+      "android": "sysOrangeOr5",
+      "web": "sys.orange.or-5"
+    },
+    "color.sysOrange.6": {
+      "android": "sysOrangeOr6",
+      "web": "sys.orange.or-6"
+    },
+    "color.sysOrange.7": {
+      "android": "sysOrangeOr7",
+      "web": "sys.orange.or-7"
+    },
+    "color.sysOrange.8": {
+      "android": "sysOrangeOr8",
+      "web": "sys.orange.or-8"
+    },
+    "color.sysOrange.9": {
+      "android": "sysOrangeOr9",
+      "web": "sys.orange.or-9"
+    },
+    "color.sysOrange.10": {
+      "android": "sysOrangeOr10",
+      "web": "sys.orange.or-10"
+    },
+    "color.sysOrange.11": {
+      "android": "sysOrangeOr11",
+      "web": "sys.orange.or-11"
+    },
+    "color.sysOrange.12": {
+      "android": "sysOrangeOr12",
+      "web": "sys.orange.or-12"
+    },
+    "color.sysOrange.13": {
+      "android": "sysOrangeOr13",
+      "web": "sys.orange.or-13"
+    },
+    "color.sysOrange.14": {
+      "android": "sysOrangeOr14",
+      "web": "sys.orange.or-14"
+    },
+    "color.sysOrange.15": {
+      "android": "sysOrangeOr15",
+      "web": "sys.orange.or-15"
+    },
+    "color.sysRed.1": {
+      "android": "sysRedRd1",
+      "web": "sys.red.rd-1"
+    },
+    "color.sysRed.2": {
+      "android": "sysRedRd2",
+      "web": "sys.red.rd-2"
+    },
+    "color.sysRed.3": {
+      "android": "sysRedRd3",
+      "web": "sys.red.rd-3"
+    },
+    "color.sysRed.4": {
+      "android": "sysRedRd4",
+      "web": "sys.red.rd-4"
+    },
+    "color.sysRed.5": {
+      "android": "sysRedRd5",
+      "web": "sys.red.rd-5"
+    },
+    "color.sysRed.6": {
+      "android": "sysRedRd6",
+      "web": "sys.red.rd-6"
+    },
+    "color.sysRed.7": {
+      "android": "sysRedRd7",
+      "web": "sys.red.rd-7"
+    },
+    "color.sysRed.8": {
+      "android": "sysRedRd8",
+      "web": "sys.red.rd-8"
+    },
+    "color.sysRed.9": {
+      "android": "sysRedRd9",
+      "web": "sys.red.rd-9"
+    },
+    "color.sysRed.10": {
+      "android": "sysRedRd10",
+      "web": "sys.red.rd-10"
+    },
+    "color.sysRed.11": {
+      "android": "sysRedRed11",
+      "web": "sys.red.red-11"
+    },
+    "color.sysRed.12": {
+      "android": "sysRedRed12",
+      "web": "sys.red.red-12"
+    },
+    "color.sysRed.13": {
+      "android": "sysRedRed13",
+      "web": "sys.red.red-13"
+    },
+    "color.sysRed.14": {
+      "android": "sysRedRed14",
+      "web": "sys.red.red-14"
+    },
+    "color.sysRed.15": {
+      "android": "sysRedRed15",
+      "web": "sys.red.red-15"
+    },
+    "color.qdYellow.1": {
+      "android": "qdYellowYl1",
+      "web": "qd.yellow.yl-1"
+    },
+    "color.qdYellow.2": {
+      "android": "qdYellowYl2",
+      "web": "qd.yellow.yl-2"
+    },
+    "color.qdYellow.3": {
+      "android": "qdYellowYl3",
+      "web": "qd.yellow.yl-3"
+    },
+    "color.qdYellow.4": {
+      "android": "qdYellowYl4",
+      "web": "qd.yellow.yl-4"
+    },
+    "color.qdYellow.5": {
+      "android": "qdYellowYl5",
+      "web": "qd.yellow.yl-5"
+    },
+    "color.qdYellow.6": {
+      "android": "qdYellowYl6",
+      "web": "qd.yellow.yl-6"
+    },
+    "color.qdYellow.7": {
+      "android": "qdYellowYl7",
+      "web": "qd.yellow.yl-7"
+    },
+    "color.qdYellow.8": {
+      "android": "qdYellowYl8",
+      "web": "qd.yellow.yl-8"
+    },
+    "color.qdYellow.9": {
+      "android": "qdYellowYl9",
+      "web": "qd.yellow.yl-9"
+    },
+    "color.qdYellow.10": {
+      "android": "qdYellowYl10",
+      "web": "qd.yellow.yl-10"
+    },
+    "color.qdYellow.11": {
+      "android": "qdYellowYl11",
+      "web": "qd.yellow.yl-11"
+    },
+    "color.qdYellow.12": {
+      "android": "qdYellowYl12",
+      "web": "qd.yellow.yl-12"
+    },
+    "color.qdYellow.13": {
+      "android": "qdYellowYl13",
+      "web": "qd.yellow.yl-13"
+    },
+    "color.qdYellow.14": {
+      "android": "qdYellowYl14",
+      "web": "qd.yellow.yl-14"
+    },
+    "color.qdYellow.15": {
+      "android": "qdYellowYl15",
+      "web": "qd.yellow.yl-15"
+    },
+    "color.qdCyan.1": {
+      "android": "qdCyanCy1",
+      "web": "qd.cyan.cy-1"
+    },
+    "color.qdCyan.2": {
+      "android": "qdCyanCy2",
+      "web": "qd.cyan.cy-2"
+    },
+    "color.qdCyan.3": {
+      "android": "qdCyanCy3",
+      "web": "qd.cyan.cy-3"
+    },
+    "color.qdCyan.4": {
+      "android": "qdCyanCy4",
+      "web": "qd.cyan.cy-4"
+    },
+    "color.qdCyan.5": {
+      "android": "qdCyanCy5",
+      "web": "qd.cyan.cy-5"
+    },
+    "color.qdCyan.6": {
+      "android": "qdCyanCy6",
+      "web": "qd.cyan.cy-6"
+    },
+    "color.qdCyan.7": {
+      "android": "qdCyanCy7",
+      "web": "qd.cyan.cy-7"
+    },
+    "color.qdCyan.8": {
+      "android": "qdCyanCy8",
+      "web": "qd.cyan.cy-8"
+    },
+    "color.qdCyan.9": {
+      "android": "qdCyanCy9",
+      "web": "qd.cyan.cy-9"
+    },
+    "color.qdCyan.10": {
+      "android": "qdCyanCy10",
+      "web": "qd.cyan.cy-10"
+    },
+    "color.qdCyan.11": {
+      "android": "qdCyanCy11",
+      "web": "qd.cyan.cy-11"
+    },
+    "color.qdCyan.12": {
+      "android": "qdCyanCy12",
+      "web": "qd.cyan.cy-12"
+    },
+    "color.qdCyan.13": {
+      "android": "qdCyanCy13",
+      "web": "qd.cyan.cy-13"
+    },
+    "color.qdCyan.14": {
+      "android": "qdCyanCy14",
+      "web": "qd.cyan.cy-14"
+    },
+    "color.qdCyan.15": {
+      "android": "qdCyanCy15",
+      "web": "qd.cyan.cy-15"
+    },
+    "color.qdPurple.1": {
+      "android": "qdPurplePr1",
+      "web": "qd.purple.pr-1"
+    },
+    "color.qdPurple.2": {
+      "android": "qdPurplePr2",
+      "web": "qd.purple.pr-2"
+    },
+    "color.qdPurple.3": {
+      "android": "qdPurplePr3",
+      "web": "qd.purple.pr-3"
+    },
+    "color.qdPurple.4": {
+      "android": "qdPurplePr4",
+      "web": "qd.purple.pr-4"
+    },
+    "color.qdPurple.5": {
+      "android": "qdPurplePr5",
+      "web": "qd.purple.pr-5"
+    },
+    "color.qdPurple.6": {
+      "android": "qdPurplePr6",
+      "web": "qd.purple.pr-6"
+    },
+    "color.qdPurple.7": {
+      "android": "qdPurplePr7",
+      "web": "qd.purple.pr-7"
+    },
+    "color.qdPurple.8": {
+      "android": "qdPurplePr8",
+      "web": "qd.purple.pr-8"
+    },
+    "color.qdPurple.9": {
+      "android": "qdPurplePr9",
+      "web": "qd.purple.pr-9"
+    },
+    "color.qdPurple.10": {
+      "android": "qdPurplePr10",
+      "web": "qd.purple.pr-10"
+    },
+    "color.qdPurple.11": {
+      "android": "qdPurplePr11",
+      "web": "qd.purple.pu-11"
+    },
+    "color.qdPurple.12": {
+      "android": "qdPurplePr12",
+      "web": "qd.purple.pu-12"
+    },
+    "color.qdPurple.13": {
+      "android": "qdPurplePr13",
+      "web": "qd.purple.pu-13"
+    },
+    "color.qdPurple.14": {
+      "android": "qdPurplePr14",
+      "web": "qd.purple.pu-14"
+    },
+    "color.qdPurple.15": {
+      "android": "qdPurplePr15",
+      "web": "qd.purple.pu-15"
+    },
+    "color.qdMagenta.1": {
+      "android": "qdMagentaMg1",
+      "web": "qd.magenta.mg-1"
+    },
+    "color.qdMagenta.2": {
+      "android": "qdMagentaMg2",
+      "web": "qd.magenta.mg-2"
+    },
+    "color.qdMagenta.3": {
+      "android": "qdMagentaMg3",
+      "web": "qd.magenta.mg-3"
+    },
+    "color.qdMagenta.4": {
+      "android": "qdMagentaMg4",
+      "web": "qd.magenta.mg-4"
+    },
+    "color.qdMagenta.5": {
+      "android": "qdMagentaMg5",
+      "web": "qd.magenta.mg-5"
+    },
+    "color.qdMagenta.6": {
+      "android": "qdMagentaMg6",
+      "web": "qd.magenta.mg-6"
+    },
+    "color.qdMagenta.7": {
+      "android": "qdMagentaMg7",
+      "web": "qd.magenta.pr-7"
+    },
+    "color.qdMagenta.8": {
+      "android": "qdMagentaMg8",
+      "web": "qd.magenta.mg-8"
+    },
+    "color.qdMagenta.9": {
+      "android": "qdMagentaMg9",
+      "web": "qd.magenta.mg-9"
+    },
+    "color.qdMagenta.10": {
+      "android": "qdMagentaMg10",
+      "web": "qd.magenta.mg-10"
+    },
+    "color.qdMagenta.11": {
+      "android": "qdMagentaMg11",
+      "web": "qd.magenta.mg-11"
+    },
+    "color.qdMagenta.12": {
+      "android": "qdMagentaMg12",
+      "web": "qd.magenta.mg-12"
+    },
+    "color.qdMagenta.13": {
+      "android": "qdMagentaMg13",
+      "web": "qd.magenta.mg-13"
+    },
+    "color.qdMagenta.14": {
+      "android": "qdMagentaMg14",
+      "web": "qd.magenta.mg-14"
+    },
+    "color.qdMagenta.15": {
+      "android": "qdMagentaMg15",
+      "web": "qd.magenta.mg-15"
+    },
+    "color.btnPrimary.disable": {
+      "android": "btnPrimaryDisable",
+      "web": "btnPrimary.disable"
+    },
+    "color.btnPrimary.default": {
+      "android": "btnPrimaryDefault",
+      "web": "btnPrimary.default"
+    },
+    "color.btnPrimary.hover": {
+      "android": "btnPrimaryHover",
+      "web": "btnPrimary.hover"
+    },
+    "color.btnPrimary.selected": {
+      "android": "btnPrimarySelected",
+      "web": "btnPrimary.selected"
+    },
+    "color.btnPrimary.outline": {
+      "android": "btnPrimaryOutline",
+      "web": "btnPrimary.outline"
+    },
+    "color.btnPrimary.outlineHover": {
+      "android": "btnPrimaryOutlineHover",
+      "web": "btnPrimary.outlineHover"
+    },
+    "color.btnPrimary.outlineSelected": {
+      "android": "btnPrimaryOutlineSelected",
+      "web": "btnPrimary.outlineSelected"
+    },
+    "color.btnPrimary.outlineDisable": {
+      "android": "btnPrimaryOutlineDisable",
+      "web": "btnPrimary.outlineDisable"
+    },
+    "color.btnSecondary.disable": {
+      "android": "btnSecondaryDisable",
+      "web": "btnSecondary.disable"
+    },
+    "color.btnSecondary.default": {
+      "android": "btnSecondaryDefault",
+      "web": "btnSecondary.default"
+    },
+    "color.btnSecondary.hover": {
+      "android": "btnSecondaryHover",
+      "web": "btnSecondary.hover"
+    },
+    "color.btnSecondary.selected": {
+      "android": "btnSecondarySelected",
+      "web": "btnSecondary.selected"
+    },
+    "color.btnSecondary.outline": {
+      "android": "btnSecondaryOutline",
+      "web": "btnSecondary.outline"
+    },
+    "color.btnSecondary.outlineHover": {
+      "android": "btnSecondaryOutlineHover",
+      "web": "btnSecondary.outlineHover"
+    },
+    "color.btnSecondary.outlineSelected": {
+      "android": "btnSecondaryOutlineSelected",
+      "web": "btnSecondary.outlineSelected"
+    },
+    "color.btnSecondary.outlineDisable": {
+      "android": "btnSecondaryOutlineDisable",
+      "web": "btnSecondary.outlineDisable"
+    },
+    "color.btnNeutral.default": {
+      "android": "btnNeutralDefault",
+      "web": "btnNeutral.default"
+    },
+    "color.btnNeutral.hover": {
+      "android": "btnNeutralHover",
+      "web": "btnNeutral.hover"
+    },
+    "color.btnNeutral.selected": {
+      "android": "btnNeutralSelected",
+      "web": "btnNeutral.selected"
+    },
+    "color.btnNeutral.disable": {
+      "android": "btnNeutralDisable",
+      "web": "btnNeutral.disable"
+    },
+    "color.btnNeutral.outline": {
+      "android": "btnNeutralOutline",
+      "web": "btnNeutral.outline"
+    },
+    "color.btnNeutral.outlineHover": {
+      "android": "btnNeutralOutlineHover",
+      "web": "btnNeutral.outlineHover"
+    },
+    "color.btnNeutral.outlineSelected": {
+      "android": "btnNeutralOutlineSelected",
+      "web": "btnNeutral.outlineSelected"
+    },
+    "color.btnNeutral.outlineDisable": {
+      "android": "btnNeutralOutlineDisable",
+      "web": "btnNeutral.outlineDisable"
+    },
+    "color.bgColor.light": {
+      "android": "bgColorLight",
+      "web": "bgColor.light"
+    },
+    "color.bgColor.disable": {
+      "android": "bgColorDisable",
+      "web": "bgColor.disable"
+    },
+    "color.bgColor.disableD": {
+      "android": "bgColorDisableD",
+      "web": "bgColor.disableD"
+    },
+    "color.bgColor.dark": {
+      "android": "bgColorDark",
+      "web": "bgColor.dark"
+    },
+    "color.bgColor.darker": {
+      "android": "bgColorDarker",
+      "web": "bgColor.darker"
+    },
+    "color.bgColor.lightPrimary": {
+      "android": "bgColorLightPrimary",
+      "web": "bgColor.lightPrimary"
+    },
+    "color.bgColor.sLightPrimary": {
+      "android": "bgColorSLightPrimary",
+      "web": "bgColor.sLightPrimary"
+    },
+    "color.bgColor.primary": {
+      "android": "bgColorPrimary",
+      "web": "bgColor.primary"
+    },
+    "color.bgColor.primaryDark": {
+      "android": "bgColorPrimaryDark",
+      "web": "bgColor.primaryDark"
+    },
+    "color.bgColor.secondary": {
+      "android": "bgColorSecondary",
+      "web": "bgColor.secondary"
+    },
+    "color.bgColor.lightSecondary": {
+      "android": "bgColorLightSecondary",
+      "web": "bgColor.lightSecondary"
+    },
+    "color.bgColor.lightGreen": {
+      "android": "bgColorLightGreen",
+      "web": "bgColor.lightGreen"
+    },
+    "color.bgColor.lightRed": {
+      "android": "bgColorLightRed",
+      "web": "bgColor.lightRed"
+    },
+    "color.bgColor.lightOrange": {
+      "android": "bgColorLightOrange",
+      "web": "bgColor.lightOrange"
+    },
+    "color.bgColor.lightBlue": {
+      "android": "bgColorLightBlue",
+      "web": "bgColor.lightBlue"
+    },
+    "color.bgColor.lightGrey": {
+      "android": "bgColorLightGrey",
+      "web": "bgColor.lightGrey"
+    },
+    "color.bgColor.lightYellow": {
+      "android": "bgColorLightYellow",
+      "web": "bgColor.lightYellow"
+    },
+    "color.bgColor.lightCyan": {
+      "android": "bgColorLightCyan",
+      "web": "bgColor.lightCyan"
+    },
+    "color.bgColor.lightPurple": {
+      "android": "bgColorLightPurple",
+      "web": "bgColor.lightPurple"
+    },
+    "color.bgColor.lightMagenta": {
+      "android": "bgColorLightMagenta",
+      "web": "bgColor.lightMagenta"
+    },
+    "color.bgColor.green": {
+      "android": "bgColorGreen",
+      "web": "bgColor.green"
+    },
+    "color.bgColor.greenDark": {
+      "android": "bgColorGreenDark",
+      "web": "bgColor.greenDark"
+    },
+    "color.bgColor.red": {
+      "android": "bgColorRed",
+      "web": "bgColor.red"
+    },
+    "color.bgColor.redDark": {
+      "android": "bgColorRedDark",
+      "web": "bgColor.redDark"
+    },
+    "color.bgColor.orange": {
+      "android": "bgColorOrange",
+      "web": "bgColor.orange"
+    },
+    "color.bgColor.orangeDark": {
+      "android": "bgColorOrangeDark",
+      "web": "bgColor.orangeDark"
+    },
+    "color.bgColor.blue": {
+      "android": "bgColorBlue",
+      "web": "bgColor.blue"
+    },
+    "color.bgColor.blueDark": {
+      "android": "bgColorBlueDark",
+      "web": "bgColor.blueDark"
+    },
+    "color.bgColor.grey": {
+      "android": "bgColorGrey",
+      "web": "bgColor.grey"
+    },
+    "color.bgColor.sLightGrey": {
+      "android": "bgColorSLightGrey",
+      "web": "bgColor.sLightGrey"
+    },
+    "color.bgColor.greyDark": {
+      "android": "bgColorGreyDark",
+      "web": "bgColor.greyDark"
+    },
+    "color.bgColor.yellow": {
+      "android": "bgColorYellow",
+      "web": "bgColor.yellow"
+    },
+    "color.bgColor.yellowDark": {
+      "android": "bgColorYellowDark",
+      "web": "bgColor.yellowDark"
+    },
+    "color.bgColor.cyan": {
+      "android": "bgColorCyan",
+      "web": "bgColor.cyan"
+    },
+    "color.bgColor.cyanDark": {
+      "android": "bgColorCyanDark",
+      "web": "bgColor.cyanDark"
+    },
+    "color.bgColor.purple": {
+      "android": "bgColorPurple",
+      "web": "bgColor.purple"
+    },
+    "color.bgColor.purpleDark": {
+      "android": "bgColorPurpleDark",
+      "web": "bgColor.purpleDark"
+    },
+    "color.bgColor.magenta": {
+      "android": "bgColorMagenta",
+      "web": "bgColor.magenta"
+    },
+    "color.bgColor.magentaBlack": {
+      "android": "bgColorMagentaBlack",
+      "web": "bgColor.magentaBlack"
+    },
+    "color.bgColor.vlightPrimary": {
+      "android": "bgColorVlightPrimary",
+      "web": "bgColor.vlightPrimary"
+    },
+    "color.textColor.primaryDark": {
+      "android": "textColorPrimaryDark",
+      "web": "textColor.primaryDark"
+    },
+    "color.textColor.secondaryDark": {
+      "android": "textColorSecondaryDark",
+      "web": "textColor.secondaryDark"
+    },
+    "color.textColor.primaryLight": {
+      "android": "textColorPrimaryLight",
+      "web": "textColor.primaryLight"
+    },
+    "color.textColor.secondaryLight": {
+      "android": "textColorSecondaryLight",
+      "web": "textColor.secondaryLight"
+    },
+    "color.textColor.placeholder": {
+      "android": "textColorPlaceholder",
+      "web": "textColor.placeholder"
+    },
+    "color.textColor.disable": {
+      "android": "textColorDisable",
+      "web": "textColor.disable"
+    },
+    "color.textColor.btnDisable": {
+      "android": "textColorBtnDisable",
+      "web": "textColor.btnDisable"
+    },
+    "color.textColor.link": {
+      "android": "textColorLink",
+      "web": "textColor.link"
+    },
+    "color.textColor.linkHover": {
+      "android": "textColorLinkHover",
+      "web": "textColor.linkHover"
+    },
+    "color.textColor.linkSelected": {
+      "android": "textColorLinkSelected",
+      "web": "textColor.linkSelected"
+    },
+    "color.textColor.error": {
+      "android": "textColorError",
+      "web": "textColor.error"
+    },
+    "color.textColor.warning": {
+      "android": "textColorWarning",
+      "web": "textColor.warning"
+    },
+    "color.textColor.sucess": {
+      "android": "textColorSucess",
+      "web": "textColor.sucess"
+    },
+    "color.textColor.linkSecondary": {
+      "android": "textColorLinkSecondary",
+      "web": "textColor.linkSecondary"
+    },
+    "color.textColor.yellow": {
+      "android": "textColorYellow",
+      "web": "textColor.yellow"
+    },
+    "color.textColor.cyan": {
+      "android": "textColorCyan",
+      "web": "textColor.cyan"
+    },
+    "color.textColor.purple": {
+      "android": "textColorPurple",
+      "web": "textColor.purple"
+    },
+    "color.textColor.magenta": {
+      "android": "textColorMagenta",
+      "web": "textColor.magenta"
+    },
+    "color.iconColor.default": {
+      "android": "iconColorDefault",
+      "web": "iconColor.default"
+    },
+    "color.iconColor.defaultAlt": {
+      "android": "iconColorDefaultAlt",
+      "web": "iconColor.defaultAlt"
+    },
+    "color.iconColor.dark": {
+      "android": "iconColorDark",
+      "web": "iconColor.dark"
+    },
+    "color.iconColor.placeholder": {
+      "android": "iconColorPlaceholder",
+      "web": "iconColor.placeholder"
+    },
+    "color.iconColor.disable": {
+      "android": "iconColorDisable",
+      "web": "iconColor.disable"
+    },
+    "color.iconColor.light": {
+      "android": "iconColorLight",
+      "web": "iconColor.light"
+    },
+    "color.iconColor.red": {
+      "android": "iconColorRed",
+      "web": "iconColor.red"
+    },
+    "color.iconColor.green": {
+      "android": "iconColorGreen",
+      "web": "iconColor.green"
+    },
+    "color.iconColor.orange": {
+      "android": "iconColorOrange",
+      "web": "iconColor.orange"
+    },
+    "color.iconColor.primary": {
+      "android": "iconColorPrimary",
+      "web": "iconColor.primary"
+    },
+    "color.iconColor.primaryHover": {
+      "android": "iconColorPrimaryHover",
+      "web": "iconColor.primaryHover"
+    },
+    "color.iconColor.primarySelected": {
+      "android": "iconColorPrimarySelected",
+      "web": "iconColor.primarySelected"
+    },
+    "color.iconColor.yellow": {
+      "android": "iconColorYellow",
+      "web": "iconColor.yellow"
+    },
+    "color.iconColor.cyan": {
+      "android": "iconColorCyan",
+      "web": "iconColor.cyan"
+    },
+    "color.iconColor.purple": {
+      "android": "iconColorPurple",
+      "web": "iconColor.purple"
+    },
+    "color.iconColor.magenta": {
+      "android": "iconColorMagenta",
+      "web": "iconColor.magenta"
+    },
+    "color.iconColor.secondary": {
+      "android": "iconColorSecondary",
+      "web": "iconColor.secondary"
+    },
+    "color.strokeColor.default": {
+      "android": "strokeColorDefault",
+      "web": "strokeColor.default"
+    },
+    "color.strokeColor.subtle": {
+      "android": "strokeColorSubtle",
+      "web": "strokeColor.subtle"
+    },
+    "color.strokeColor.disable": {
+      "android": "strokeColorDisable",
+      "web": "strokeColor.disable"
+    },
+    "color.strokeColor.light": {
+      "android": "strokeColorLight",
+      "web": "strokeColor.light"
+    },
+    "color.strokeColor.active": {
+      "android": "strokeColorActive",
+      "web": "strokeColor.active"
+    },
+    "color.strokeColor.error": {
+      "android": "strokeColorError",
+      "web": "strokeColor.error"
+    },
+    "color.strokeColor.sucess": {
+      "android": "strokeColorSucess",
+      "web": "strokeColor.sucess"
+    },
+    "color.strokeColor.filled": {
+      "android": "strokeColorFilled",
+      "web": "strokeColor.filled"
+    },
+    "color.strokeColor.warning": {
+      "android": "strokeColorWarning",
+      "web": "strokeColor.warning"
+    },
+    "color.strokeColor.dark": {
+      "android": "strokeColorDark",
+      "web": "strokeColor.dark"
+    },
+    "color.desktopMultiSelection.text": {
+      "android": null,
+      "web": "desktop.mutliSelection.text"
+    },
+    "color.desktopMultiSelection.bgColor": {
+      "android": null,
+      "web": "desktop.mutliSelection.bgColor"
+    },
+    "color.desktopMultiSelection.icon": {
+      "android": null,
+      "web": "desktop.mutliSelection.icon"
+    },
+    "color.desktopMultiSelection.stroke": {
+      "android": null,
+      "web": "desktop.mutliSelection.stroke"
+    },
+    "color.tagging.text": {
+      "android": null,
+      "web": "tagging.text"
+    },
+    "color.tagging.bgColor": {
+      "android": null,
+      "web": "tagging.bgColor"
+    }
+  },
+  "space": {
+    "space.xxsm": {
+      "android": "spacingXxsm",
+      "web": "xxsm"
+    },
+    "space.xsm": {
+      "android": "spacingXsm",
+      "web": "xsm"
+    },
+    "space.sm": {
+      "android": "spacingSm",
+      "web": "sm"
+    },
+    "space.smd": {
+      "android": "spacingSmd",
+      "web": "smd"
+    },
+    "space.md": {
+      "android": "spacingMd",
+      "web": "md"
+    },
+    "space.mlg": {
+      "android": "spacingMlg",
+      "web": "mlg"
+    },
+    "space.lg": {
+      "android": "spacingLg",
+      "web": "lg"
+    },
+    "space.xlg": {
+      "android": "spacingXlg",
+      "web": "xlg"
+    },
+    "space.xl": {
+      "android": "spacingXl",
+      "web": "xl"
+    },
+    "space.2xl": {
+      "android": "spacing2xl",
+      "web": "2xl"
+    },
+    "space.3xl": {
+      "android": "spacing3xl",
+      "web": "3xl"
+    },
+    "space.4xl": {
+      "android": "spacing4xl",
+      "web": "4xl"
+    },
+    "space.5xl": {
+      "android": "spacing5xl",
+      "web": "5xl"
+    },
+    "space.6xl": {
+      "android": "spacing6xl",
+      "web": "6xl"
+    },
+    "space.7xl": {
+      "android": "spacing7xl",
+      "web": "7xl"
+    },
+    "space.8xl": {
+      "android": "spacing8xl",
+      "web": "8xl"
+    },
+    "space.9xl": {
+      "android": "spacing9xl",
+      "web": "9xl"
+    },
+    "space.10xl": {
+      "android": "spacing10xl",
+      "web": "10xl"
+    },
+    "space.11xl": {
+      "android": "spacing11xl",
+      "web": "11xl"
+    },
+    "space.12xl": {
+      "android": "spacing12xl",
+      "web": "12xl"
+    },
+    "space.13xl": {
+      "android": "spacing13xl",
+      "web": "13xl"
+    },
+    "space.14xl": {
+      "android": "spacing14xl",
+      "web": "14xl"
+    }
+  },
+  "radius": {
+    "radius.xxsm": {
+      "android": "radiusXxsm",
+      "web": "xxsm"
+    },
+    "radius.xsm": {
+      "android": "radiusXsm",
+      "web": "xsm"
+    },
+    "radius.xsmx": {
+      "android": "radiusXsmx",
+      "web": "xsmx"
+    },
+    "radius.sm": {
+      "android": "radiusSm",
+      "web": "sm"
+    },
+    "radius.md": {
+      "android": "radiusMd",
+      "web": "md"
+    },
+    "radius.lg": {
+      "android": "radiusLg",
+      "web": "lg"
+    },
+    "radius.xl": {
+      "android": "radiusXl",
+      "web": "xl"
+    }
+  },
+  "text": {
+    "text.display.huge": {
+      "android": "displayHuge",
+      "web": "display.huge",
+      "androidLetterSpacingSp": -0.3
+    },
+    "text.display.large": {
+      "android": "displayLarge",
+      "web": "display.large",
+      "androidLetterSpacingSp": -0.3
+    },
+    "text.display.small": {
+      "android": "displaySmall",
+      "web": "display.small",
+      "androidLetterSpacingSp": -0.3
+    },
+    "text.display.tiny": {
+      "android": "displayTiny",
+      "web": "display.tiny",
+      "androidLetterSpacingSp": -0.3
+    },
+    "text.headline.large": {
+      "android": "headlineLarge",
+      "web": "headline.large",
+      "androidLetterSpacingSp": -0.2
+    },
+    "text.headline.default": {
+      "android": "headlineDefault",
+      "web": "headline.default",
+      "androidLetterSpacingSp": -0.2
+    },
+    "text.headline.small": {
+      "android": "headlineSmall",
+      "web": "headline.small",
+      "androidLetterSpacingSp": -0.2
+    },
+    "text.headline.tiny": {
+      "android": "headlineTiny",
+      "web": "headline.tiny",
+      "androidLetterSpacingSp": -0.1
+    },
+    "text.headline.superTiny": {
+      "android": "headlineSuperTiny",
+      "web": "headline.superTiny",
+      "androidLetterSpacingSp": -0.3
+    },
+    "text.body.large": {
+      "android": "bodyLarge",
+      "web": "body.large",
+      "androidLetterSpacingSp": -0.2
+    },
+    "text.body.largeStrong": {
+      "android": "bodyLargeStrong",
+      "web": "body.largeStrong",
+      "androidLetterSpacingSp": -0.2
+    },
+    "text.body.default": {
+      "android": "bodyDefault",
+      "web": "body.default",
+      "androidLetterSpacingSp": 0
+    },
+    "text.body.defaultStrong": {
+      "android": "bodyDefaultStrong",
+      "web": "body.defaultStrong",
+      "androidLetterSpacingSp": 0
+    },
+    "text.body.small": {
+      "android": "bodySmall",
+      "web": "body.small",
+      "androidLetterSpacingSp": -0.1
+    },
+    "text.body.smallStrong": {
+      "android": "bodySmallStrong",
+      "web": "body.smallStrong",
+      "androidLetterSpacingSp": -0.1
+    },
+    "text.body.tiny": {
+      "android": "bodyTiny",
+      "web": "body.tiny",
+      "androidLetterSpacingSp": -0.3
+    },
+    "text.body.tinyStrong": {
+      "android": "bodyTinyStrong",
+      "web": "body.tinyStrong",
+      "androidLetterSpacingSp": -0.3
+    },
+    "text.paragraph.large": {
+      "android": "paragraphLarge",
+      "web": "paragraph.large",
+      "androidLetterSpacingSp": 0
+    },
+    "text.paragraph.default": {
+      "android": "paragraphDefault",
+      "web": "paragraph.default",
+      "androidLetterSpacingSp": 0
+    },
+    "text.paragraph.small": {
+      "android": "paragraphSmall",
+      "web": "paragraph.small",
+      "androidLetterSpacingSp": 0
+    },
+    "text.paragraph.tiny": {
+      "android": "paragraphTiny",
+      "web": "paragraph.tiny",
+      "androidLetterSpacingSp": 0
+    },
+    "text.caption.default": {
+      "android": "captionDefault",
+      "web": "caption.default",
+      "androidLetterSpacingSp": 0
+    },
+    "text.caption.small": {
+      "android": "captionSmall",
+      "web": "caption.small",
+      "androidLetterSpacingSp": 0
+    },
+    "text.caption.tiny": {
+      "android": "captionTiny",
+      "web": "caption.tiny",
+      "androidLetterSpacingSp": 0
+    },
+    "text.caption.tinyBold": {
+      "android": "captionTinyBold",
+      "web": "caption.tinyBold",
+      "androidLetterSpacingSp": 0
+    },
+    "text.caption.tinyStrong": {
+      "android": "captionTinyStrong",
+      "web": null,
+      "androidLetterSpacingSp": -0.3
+    }
+  },
+  "font": {
+    "font.family.sans": {
+      "android": "NunitoSans",
+      "web": "text.fontFamily"
+    },
+    "font.weight.light": {
+      "android": "FontWeight.Light",
+      "web": "fontWeightLight"
+    },
+    "font.weight.regular": {
+      "android": "FontWeight.Normal",
+      "web": "fontWeightRegular"
+    },
+    "font.weight.semiBold": {
+      "android": "FontWeight.SemiBold",
+      "web": "fontWeightSemiBold"
+    },
+    "font.weight.bold": {
+      "android": "FontWeight.Bold",
+      "web": "fontWeightBold"
+    },
+    "font.weight.extraBold": {
+      "android": "FontWeight.ExtraBold",
+      "web": "fontWeightExtraBold"
+    },
+    "font.size.xxsm": {
+      "android": "fontSizeXxsm",
+      "web": null
+    },
+    "font.size.xsm": {
+      "android": "fontSizeXsm",
+      "web": null
+    },
+    "font.size.sm": {
+      "android": "fontSizeSm",
+      "web": null
+    },
+    "font.size.md": {
+      "android": "fontSizeMd",
+      "web": null
+    },
+    "font.size.lg": {
+      "android": "fontSizeLg",
+      "web": null
+    },
+    "font.size.xl": {
+      "android": "fontSizeXl",
+      "web": null
+    },
+    "font.size.xxl": {
+      "android": "fontSizeXxl",
+      "web": null
+    },
+    "font.size.3xl": {
+      "android": "fontSize3xl",
+      "web": null
+    },
+    "font.size.4xl": {
+      "android": "fontSize4xl",
+      "web": null
+    },
+    "font.size.5xl": {
+      "android": "fontSize5xl",
+      "web": null
+    },
+    "font.lineHeight.xxxsm": {
+      "android": "lineHeightXxxsm",
+      "web": null
+    },
+    "font.lineHeight.xxsm": {
+      "android": "lineHeightXxsm",
+      "web": null
+    },
+    "font.lineHeight.xsm": {
+      "android": "lineHeightXsm",
+      "web": null
+    },
+    "font.lineHeight.sm": {
+      "android": "lineHeightSm",
+      "web": null
+    },
+    "font.lineHeight.md": {
+      "android": "lineHeightMd",
+      "web": null
+    },
+    "font.lineHeight.lg": {
+      "android": "lineHeightLg",
+      "web": null
+    },
+    "font.lineHeight.xl": {
+      "android": "lineHeightXl",
+      "web": null
+    },
+    "font.lineHeight.xxl": {
+      "android": "lineHeightXxl",
+      "web": null
+    },
+    "font.lineHeight.3xl": {
+      "android": "lineHeight3xl",
+      "web": null
+    },
+    "font.lineHeight.4xl": {
+      "android": "lineHeight4xl",
+      "web": null
+    },
+    "font.lineHeight.5xl": {
+      "android": "lineHeight5xl",
+      "web": null
+    },
+    "font.lineHeight.6xl": {
+      "android": "lineHeight6xl",
+      "web": null
+    },
+    "font.lineHeight.7xl": {
+      "android": "lineHeight7xl",
+      "web": null
+    }
+  }
+}

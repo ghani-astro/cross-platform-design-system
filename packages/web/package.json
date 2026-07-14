@@ -1,0 +1,31 @@
+{
+  "name": "@ghani-astro/design-tokens",
+  "version": "0.1.0",
+  "description": "Astro design tokens for web, generated from the cross-platform design system.",
+  "type": "module",
+  "main": "index.mjs",
+  "module": "index.mjs",
+  "types": "index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.mjs",
+      "default": "./index.mjs"
+    },
+    "./tokens.css": "./tokens.css"
+  },
+  "files": [
+    "index.mjs",
+    "index.d.ts",
+    "tokens.css",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ghani-astro/cross-platform-design-system.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
+}

@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en" style="color-scheme: dark light">
+<head>
+<meta charset="utf-8">
+<title>Nova — Dashboard</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#1a1612" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f7f5f0" media="(prefers-color-scheme: light)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-canvas:      oklch(15% 0.005 60);
+    --bg-surface:     oklch(18.5% 0.006 60);
+    --bg-elevated:    oklch(22% 0.007 60);
+    --bg-sunken:      oklch(12% 0.004 60);
+    --border-subtle:  oklch(25% 0.008 60);
+    --border-default: oklch(32% 0.010 60);
+    --text-primary:   oklch(96% 0.005 80);
+    --text-secondary: oklch(72% 0.008 70);
+    --text-tertiary:  oklch(55% 0.008 70);
+    --accent:         oklch(88% 0.18 130);
+    --accent-fg:      oklch(15% 0.005 60);
+    --danger:         oklch(70% 0.18 25);
+    --font-display:   "Geist", system-ui, sans-serif;
+    --font-body:      "Geist", system-ui, sans-serif;
+    --font-mono:      "JetBrains Mono", ui-monospace, monospace;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg-canvas:      oklch(98.5% 0.004 80);
+      --bg-surface:     oklch(96% 0.005 80);
+      --bg-elevated:    oklch(99% 0.003 80);
+      --bg-sunken:      oklch(93% 0.006 80);
+      --border-subtle:  oklch(89% 0.006 80);
+      --border-default: oklch(82% 0.007 80);
+      --text-primary:   oklch(20% 0.008 70);
+      --text-secondary: oklch(40% 0.009 70);
+      --text-tertiary:  oklch(55% 0.008 70);
+      --accent:         oklch(62% 0.18 130);
+      --accent-fg:      oklch(99% 0.003 80);
+    }
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; min-height: 100%; background: var(--bg-canvas); color: var(--text-primary); font-family: var(--font-body); -webkit-font-smoothing: antialiased; }
+
+  /* Aurora backdrop — match login/onboarding */
+  .backdrop { position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(50% 50% at 12% 10%,  color-mix(in oklab, oklch(60% 0.18 130) 35%, transparent) 0%, transparent 60%),
+      radial-gradient(48% 48% at 88% 18%,  color-mix(in oklab, oklch(60% 0.18 245) 30%, transparent) 0%, transparent 60%),
+      radial-gradient(55% 55% at 92% 90%,  color-mix(in oklab, oklch(60% 0.18 25)  30%, transparent) 0%, transparent 60%),
+      radial-gradient(45% 45% at 8%  88%,  color-mix(in oklab, oklch(60% 0.18 340) 25%, transparent) 0%, transparent 60%);
+    background-size: 110% 110%;
+    background-position: 0% 0%;
+  }
+  .backdrop::after {
+    content: "";
+    position: absolute; inset: 0;
+    pointer-events: none;
+    background: radial-gradient(circle 400px at var(--mx, 50%) var(--my, 50%),
+                                color-mix(in oklab, var(--accent) 18%, transparent),
+                                transparent 70%);
+    transition: background 220ms ease-out;
+    mix-blend-mode: screen;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .backdrop { animation: aurora-drift 22s ease-in-out infinite alternate; }
+    @keyframes aurora-drift {
+      0%   { background-position: 0% 0%;     filter: hue-rotate(-6deg); }
+      50%  { background-position: 100% 50%;  filter: hue-rotate(4deg);  }
+      100% { background-position: 50% 100%;  filter: hue-rotate(8deg);  }
+    }
+  }
+
+  /* Header — glass-frosted */
+  .topbar { display: flex; align-items: center; gap: 14px; padding: 14px 24px; border-bottom: 1px solid var(--border-subtle); background: color-mix(in oklab, var(--bg-canvas) 78%, transparent); backdrop-filter: saturate(140%) blur(14px); -webkit-backdrop-filter: saturate(140%) blur(14px); position: sticky; top: 0; z-index: 10; }
+  .brand { display: flex; align-items: center; gap: 10px; }
+  .brand .mark { width: 28px; height: 28px; border-radius: 6px; background: var(--accent); color: var(--accent-fg); display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 13px; }
+  .brand .name { font-size: 13px; font-weight: 600; line-height: 1.1; }
+  .brand .sub { font-family: var(--font-mono); font-size: 10px; color: var(--text-tertiary); letter-spacing: .08em; margin-top: 2px; }
+
+  .topbar .spacer { flex: 1; }
+  .user { display: inline-flex; align-items: center; gap: 10px; }
+  .user .who { text-align: right; }
+  .user .who .n { font-size: 12.5px; font-weight: 500; line-height: 1.1; }
+  .user .who .e { font-family: var(--font-mono); font-size: 10px; color: var(--text-tertiary); margin-top: 2px; }
+  .avatar { width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(135deg, oklch(75% 0.15 35), oklch(60% 0.18 320)); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; }
+
+  .btn { background: var(--bg-surface); border: 1px solid var(--border-default); color: var(--text-primary); padding: 0 12px; height: 34px; border-radius: 6px; font: inherit; font-size: 12.5px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: background .12s ease, border-color .12s ease, transform .08s ease, box-shadow .12s ease; touch-action: manipulation; }
+  .btn:hover { background: var(--bg-elevated); transform: translateY(-1px); }
+  .btn:active { transform: translateY(0); }
+  .btn:focus-visible { outline: 0; box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 28%, transparent); border-color: var(--accent); }
+  .btn.pri { background: var(--accent); color: var(--accent-fg); border-color: var(--accent); font-weight: 600; box-shadow: 0 4px 16px color-mix(in oklab, var(--accent) 32%, transparent); }
+  .btn.pri:hover { background: oklch(82% 0.18 130); }
+  .btn.pri:focus-visible { box-shadow: 0 4px 16px color-mix(in oklab, var(--accent) 32%, transparent), 0 0 0 3px color-mix(in oklab, var(--accent) 38%, transparent); }
+  /* Sign out — subtler ghost variant */
+  .btn.ghost { background: transparent; color: var(--text-tertiary); border-color: transparent; }
+  .btn.ghost:hover { color: var(--text-primary); background: var(--bg-elevated); transform: none; }
+  .btn.ghost:focus-visible { color: var(--text-primary); box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 26%, transparent); }
+  .btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* Body */
+  .container { position: relative; z-index: 1; max-width: 1080px; margin: 0 auto; padding: 56px 24px 80px; }
+  .crumb { font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 14px; }
+  h1 { font-family: var(--font-display); font-weight: 600; font-size: 32px; letter-spacing: -.02em; margin: 0 0 6px; text-wrap: balance; }
+  h1 .name-accent { color: var(--accent); }
+  .lede { font-size: 14px; color: var(--text-secondary); margin: 0 0 32px; max-width: 560px; text-wrap: pretty; }
+
+  .section-h { display: flex; align-items: center; gap: 12px; margin: 36px 0 16px; }
+  .section-h h2 { font-family: var(--font-display); font-size: 16px; font-weight: 600; margin: 0; }
+  .section-h .count { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--text-tertiary); padding: 3px 8px; background: var(--bg-sunken); border-radius: 99px; }
+  .section-h .spacer { flex: 1; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+
+  /* Workspace card — premium hover + brand color preview ramp */
+  .ws-card {
+    position: relative;
+    background: color-mix(in oklab, var(--bg-surface) 86%, transparent);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex; flex-direction: column; gap: 14px;
+    transition: border-color .15s ease, transform .12s ease, box-shadow .15s ease, background-color .15s ease;
+    cursor: pointer;
+    overflow: hidden;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    width: 100%;
+    touch-action: manipulation;
+  }
+  .ws-card:focus-visible {
+    outline: 0;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--ws-brand, var(--accent)) 28%, transparent);
+  }
+  .ws-card::before {
+    content: "";
+    position: absolute; inset: 0;
+    background: radial-gradient(60% 100% at 0% 0%, color-mix(in oklab, var(--ws-brand, var(--accent)) 15%, transparent), transparent 60%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .2s;
+  }
+  .ws-card:hover {
+    border-color: color-mix(in oklab, var(--ws-brand, var(--accent)) 50%, var(--border-default));
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(0,0,0,.28), 0 0 0 1px color-mix(in oklab, var(--ws-brand, var(--accent)) 18%, transparent);
+  }
+  .ws-card:hover::before { opacity: 1; }
+  .ws-card > * { position: relative; z-index: 1; }
+  .ws-card .h { display: flex; align-items: center; gap: 10px; }
+  .ws-card .mark { width: 36px; height: 36px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 16px; flex: 0 0 auto; box-shadow: 0 2px 8px rgba(0,0,0,.25); }
+  .ws-card .meta b { display: block; font-family: var(--font-display); font-size: 15px; font-weight: 600; margin-bottom: 2px; }
+  .ws-card .meta .tag { font-family: var(--font-mono); font-size: 10.5px; color: var(--text-tertiary); letter-spacing: .04em; }
+  .ws-card .ramp { display: flex; gap: 3px; }
+  .ws-card .ramp span { flex: 1; height: 16px; border-radius: 3px; border: 1px solid rgba(255,255,255,.04); box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+  .ws-card .foot { display: flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 10.5px; color: var(--text-tertiary); letter-spacing: .04em; }
+  .ws-card .foot .spacer { flex: 1; }
+  .ws-card .foot .starter-pill { padding: 2px 7px; background: var(--bg-sunken); border-radius: 4px; color: var(--text-secondary); }
+  .ws-card .h .meta { flex: 1; min-width: 0; }
+  .ws-kebab { margin-left: auto; flex: 0 0 auto; width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid transparent; border-radius: 7px; background: transparent; color: var(--text-tertiary); font-size: 17px; line-height: 1; cursor: pointer; opacity: 0; transition: opacity .12s, background .12s, color .12s, border-color .12s; }
+  .ws-card:hover .ws-kebab, .ws-card:focus-within .ws-kebab { opacity: 1; }
+  .ws-kebab:hover, .ws-kebab:focus-visible { background: var(--bg-sunken); color: var(--text-primary); border-color: var(--border-default); outline: none; }
+  .ws-menu { position: absolute; z-index: 50; min-width: 168px; padding: 5px; background: var(--bg-surface, #1b1b18); border: 1px solid var(--border-default); border-radius: 10px; box-shadow: 0 12px 32px rgba(0,0,0,.4); display: flex; flex-direction: column; gap: 2px; }
+  .ws-menu button { text-align: left; padding: 8px 11px; font-size: 12.5px; font-family: var(--font-display); color: var(--text-secondary); background: transparent; border: 0; border-radius: 7px; cursor: pointer; }
+  .ws-menu button:hover { background: var(--bg-sunken); color: var(--text-primary); }
+  .ws-menu button.danger { color: #e2725b; }
+  .ws-menu button.danger:hover { background: color-mix(in oklab, #c0392b 18%, transparent); color: #ff8a73; }
+
+  .empty { padding: 56px 24px; text-align: center; color: var(--text-tertiary); font-size: 13px; border: 1px dashed var(--border-default); border-radius: 12px; background: color-mix(in oklab, var(--bg-surface) 60%, transparent); }
+  .empty b { display: block; font-family: var(--font-display); font-size: 16px; color: var(--text-secondary); margin-bottom: 6px; font-weight: 600; }
+</style>
+</head>
+
+<body>
+  <div class="backdrop"></div>
+
+  <div class="topbar">
+    <div class="brand">
+      <div class="mark">B</div>
+      <div>
+        <div class="name">Nova</div>
+        <div class="sub">design-tokens · v0</div>
+      </div>
+    </div>
+    <span class="spacer"></span>
+    <div class="user">
+      <div class="who">
+        <div class="n" id="u-name">—</div>
+        <div class="e" id="u-email">—</div>
+      </div>
+      <div class="avatar" id="u-avatar">?</div>
+    </div>
+    <button class="btn ghost" id="btn-signout" type="button" aria-label="Sign out of Nova">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+      Sign out
+    </button>
+  </div>
+
+  <div class="container">
+    <div class="crumb">Account · Dashboard</div>
+    <h1 id="welcome">Welcome back</h1>
+    <p class="lede">Pick a workspace to continue, or create a new one. Each workspace holds its own design tokens, palettes, and component mappings.</p>
+
+    <div class="section-h">
+      <h2>Your workspaces</h2>
+      <span class="count" id="ws-count">0</span>
+      <span class="spacer"></span>
+      <button class="btn pri" id="btn-new">
+        <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+        New workspace
+      </button>
+    </div>
+
+    <div id="workspaces" class="grid"></div>
+  </div>
+
+<script>
+  // Cursor aurora — sync with login/onboarding behavior.
+  (function setupCursorAurora() {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    let raf = null;
+    document.addEventListener('mousemove', (e) => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        document.documentElement.style.setProperty('--mx', (e.clientX / window.innerWidth * 100) + '%');
+        document.documentElement.style.setProperty('--my', (e.clientY / window.innerHeight * 100) + '%');
+        raf = null;
+      });
+    }, { passive: true });
+  })();
+
+  // Gate: must have a session
+  const session = (() => {
+    try { return JSON.parse(localStorage.getItem('bb.session')); } catch (e) { return null; }
+  })();
+  if (!session || !session.user) {
+    window.location.replace('/login.html');
+    throw new Error('no session');
+  }
+
+  // Populate header
+  const initials = (session.user.name || '?').split(/\s+/).map(s => s[0]).join('').slice(0, 2).toUpperCase();
+  const firstName = (session.user.name || '').split(/\s+/)[0] || '';
+  document.getElementById('u-name').textContent  = session.user.name || '—';
+  document.getElementById('u-email').textContent = session.user.email || '—';
+  document.getElementById('u-avatar').textContent = initials || '?';
+  document.getElementById('welcome').innerHTML = firstName
+    ? `Welcome back, <span class="name-accent">${firstName}</span>`
+    : 'Welcome back';
+
+  // Sign out
+  document.getElementById('btn-signout').addEventListener('click', () => {
+    if (!confirm('Sign out of Nova?')) return;
+    localStorage.removeItem('bb.session');
+    window.location.href = '/login.html';
+  });
+
+  // New workspace → re-enter onboarding
+  document.getElementById('btn-new').addEventListener('click', () => {
+    // Set a pending workspace stub; onboarding will let user finish setup
+    const stub = { id: 'workspace-' + Math.random().toString(36).slice(2, 7), name: 'New workspace', tagline: 'design-tokens.v0' };
+    const next = { ...session, pendingWorkspace: stub, activeWorkspaceId: null };
+    localStorage.setItem('bb.session', JSON.stringify(next));
+    window.location.href = '/onboarding.html';
+  });
+
+  // Render workspaces (re-callable after rename / duplicate / delete)
+  function persist() { localStorage.setItem('bb.session', JSON.stringify(session)); }
+  function escapeH(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+  function renderWorkspaces() {
+  const host = document.getElementById('workspaces');
+  const list = session.workspaces || [];
+  document.getElementById('ws-count').textContent = `${list.length} ${list.length === 1 ? 'workspace' : 'workspaces'}`;
+  host.innerHTML = '';
+  if (!list.length) {
+    host.innerHTML = `
+      <div class="empty">
+        <b>No workspaces yet</b>
+        <div>Click <b style="color:var(--text-secondary)">New workspace</b> above to create your first design system.</div>
+      </div>
+    `;
+  } else {
+    list.forEach(ws => {
+      const initialsW = (ws.name || '?').split(/\s+/).map(s => s[0]).join('').slice(0, 2).toUpperCase();
+      const brand = ws.brandColor || '#C8E34A';
+      const ok = hexToOklch(brand);
+      // Generate 6-stop ramp from brand hue (matching onboarding ramp algorithm)
+      const Ls = [92, 78, 60, 48, 32, 18];
+      const C = ok ? Math.min(0.18, ok.C) : 0.14;
+      const H = ok ? ok.H : 130;
+      const rampSpans = Ls.map(L => {
+        const c = C * (1 - Math.abs(L - 60) / 90);
+        return `<span style="background:oklch(${L}% ${Math.max(0, c).toFixed(4)} ${H.toFixed(1)})"></span>`;
+      }).join('');
+      const card = document.createElement('div');
+      card.className = 'ws-card';
+      card.setAttribute('role', 'button');
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('aria-label', `Open workspace ${ws.name}`);
+      card.style.setProperty('--ws-brand', brand);
+      card.innerHTML = `
+        <div class="h">
+          <div class="mark" aria-hidden="true" style="background:${brand};color:${pickFg(brand)}">${initialsW}</div>
+          <div class="meta">
+            <b>${escapeH(ws.name)}</b>
+            <span class="tag" translate="no">${escapeH(ws.tagline || 'design-tokens.v0')}</span>
+          </div>
+          <button type="button" class="ws-kebab" aria-label="Workspace actions" aria-haspopup="menu">⋯</button>
+        </div>
+        <div class="ramp" aria-hidden="true">${rampSpans}</div>
+        <div class="foot">
+          <span>Created ${ws.createdAt || '—'}</span>
+          <span class="spacer"></span>
+          ${ws.starter ? `<span class="starter-pill">${escapeH(ws.starter)}</span>` : ''}
+        </div>
+      `;
+      const open = () => { session.activeWorkspaceId = ws.id; persist(); window.location.href = '/index.html'; };
+      card.addEventListener('click', open);
+      card.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+      const kebab = card.querySelector('.ws-kebab');
+      kebab.addEventListener('click', (e) => { e.stopPropagation(); openWsMenu(kebab, ws); });
+      host.appendChild(card);
+    });
+  }
+  }
+
+  // ── Workspace context menu (rename / duplicate / delete) ──────────────────
+  let wsMenuEl = null;
+  function closeWsMenu() {
+    if (!wsMenuEl) return;
+    wsMenuEl.remove(); wsMenuEl = null;
+    document.removeEventListener('click', closeWsMenu);
+    document.removeEventListener('keydown', onWsMenuKey);
+  }
+  function onWsMenuKey(e) { if (e.key === 'Escape') closeWsMenu(); }
+  function openWsMenu(anchor, ws) {
+    closeWsMenu();
+    const menu = document.createElement('div');
+    menu.className = 'ws-menu';
+    menu.setAttribute('role', 'menu');
+    menu.innerHTML = `
+      <button type="button" role="menuitem" data-act="rename">Rename…</button>
+      <button type="button" role="menuitem" data-act="duplicate">Duplicate</button>
+      <button type="button" role="menuitem" data-act="delete" class="danger">Delete…</button>
+    `;
+    document.body.appendChild(menu);
+    const r = anchor.getBoundingClientRect();
+    menu.style.top = `${r.bottom + window.scrollY + 6}px`;
+    menu.style.left = `${Math.max(8, Math.min(r.right + window.scrollX - menu.offsetWidth, window.innerWidth - menu.offsetWidth - 8))}px`;
+    wsMenuEl = menu;
+    menu.addEventListener('click', (e) => {
+      const b = e.target.closest('[data-act]'); if (!b) return;
+      e.stopPropagation();
+      const act = b.dataset.act;
+      closeWsMenu();
+      if (act === 'rename') renameWs(ws);
+      else if (act === 'duplicate') duplicateWs(ws);
+      else if (act === 'delete') deleteWs(ws);
+    });
+    setTimeout(() => {
+      document.addEventListener('click', closeWsMenu);
+      document.addEventListener('keydown', onWsMenuKey);
+    }, 0);
+  }
+  function renameWs(ws) {
+    const name = prompt('Rename workspace', ws.name);
+    if (name == null) return;
+    const t = name.trim(); if (!t) return;
+    ws.name = t; persist(); renderWorkspaces();
+  }
+  function duplicateWs(ws) {
+    const copy = { ...ws, id: 'workspace-' + Math.random().toString(36).slice(2, 7), name: `${ws.name} copy`, createdAt: new Date().toISOString().slice(0, 10) };
+    const i = session.workspaces.findIndex(w => w.id === ws.id);
+    session.workspaces.splice(i + 1, 0, copy); persist(); renderWorkspaces();
+  }
+  function deleteWs(ws) {
+    if (!confirm(`Delete workspace "${ws.name}"? This removes its saved tokens and cannot be undone.`)) return;
+    session.workspaces = (session.workspaces || []).filter(w => w.id !== ws.id);
+    if (session.activeWorkspaceId === ws.id) session.activeWorkspaceId = null;
+    persist(); renderWorkspaces();
+  }
+  renderWorkspaces();
+
+  // Helper: pick foreground for hex background (rough WCAG)
+  function pickFg(hex) {
+    try {
+      const c = hex.replace('#', '');
+      const r = parseInt(c.slice(0, 2), 16), g = parseInt(c.slice(2, 4), 16), b = parseInt(c.slice(4, 6), 16);
+      const yiq = (r * 299 + g * 587 + b * 114) / 1000;
+      return yiq >= 140 ? '#15110d' : '#ffffff';
+    } catch (e) { return '#15110d'; }
+  }
+
+  // Helper: hex → OKLCH (sRGB → linear → LMS → OKLab → OKLCh), shared algorithm with onboarding.
+  function hexToOklch(hex) {
+    hex = hex.replace('#', '');
+    if (hex.length !== 6) return null;
+    const r = parseInt(hex.slice(0, 2), 16) / 255;
+    const g = parseInt(hex.slice(2, 4), 16) / 255;
+    const b = parseInt(hex.slice(4, 6), 16) / 255;
+    const lin = c => c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+    const rl = lin(r), gl = lin(g), bl = lin(b);
+    const l = 0.4122214708 * rl + 0.5363325363 * gl + 0.0514459929 * bl;
+    const m = 0.2119034982 * rl + 0.6806995451 * gl + 0.1073969566 * bl;
+    const s = 0.0883024619 * rl + 0.2817188376 * gl + 0.6299787005 * bl;
+    const l_ = Math.cbrt(l), m_ = Math.cbrt(m), s_ = Math.cbrt(s);
+    const L = 0.2104542553 * l_ + 0.7936177850 * m_ - 0.0040720468 * s_;
+    const a = 1.9779984951 * l_ - 2.4285922050 * m_ + 0.4505937099 * s_;
+    const b2 = 0.0259040371 * l_ + 0.7827717662 * m_ - 0.8086757660 * s_;
+    const C = Math.sqrt(a * a + b2 * b2);
+    let H = Math.atan2(b2, a) * 180 / Math.PI;
+    if (H < 0) H += 360;
+    return { L: L * 100, C, H };
+  }
+</script>
+</body>
+</html>

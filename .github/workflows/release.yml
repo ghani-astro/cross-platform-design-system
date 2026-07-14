@@ -1,0 +1,101 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      # Loop safety: the release commit made by this workflow only touches
+      # VERSION, packages/android/tokens/src, packages/web and Sources, all
+      # of which live outside tokens/ and generators/, so it can never
+      # re-match these path filters. Do NOT add VERSION, packages/** or
+      # Sources/** here.
+      - "tokens/**"
+      - "generators/**"
+
+permissions:
+  contents: write
+  packages: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    # Extra guard on top of the path filters above: GitHub also skips pushes
+    # whose head commit message contains [skip ci], and pushes made with the
+    # default GITHUB_TOKEN do not trigger workflows at all.
+    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://npm.pkg.github.com
+          scope: "@ghani-astro"
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Bump patch version
+        id: version
+        run: |
+          node -e 'const fs = require("fs"); const p = fs.readFileSync("VERSION", "utf8").trim().split(".").map(Number); p[2] += 1; fs.writeFileSync("VERSION", p.join(".") + "\n");'
+          echo "version=$(tr -d '[:space:]' < VERSION)" >> "$GITHUB_OUTPUT"
+          echo "Releasing v$(cat VERSION)"
+
+      - name: Run generators
+        run: |
+          node generators/android.mjs
+          node generators/ios.mjs
+          node generators/web.mjs
+
+      - name: Sync web package version to VERSION
+        # generators/web.mjs already writes package.json from VERSION;
+        # this re-sync is a cheap safety net in case that ever changes.
+        run: |
+          node -e 'const fs = require("fs"); const v = fs.readFileSync("VERSION", "utf8").trim(); const pkg = JSON.parse(fs.readFileSync("packages/web/package.json", "utf8")); pkg.version = v; fs.writeFileSync("packages/web/package.json", JSON.stringify(pkg, null, 2) + "\n");'
+
+      - name: Commit, tag and push release
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add VERSION packages/web packages/android/tokens/src Sources
+          git commit -m "release: v${VERSION} [skip ci]"
+          git tag "v${VERSION}"
+          git push origin HEAD:main
+          git push origin "v${VERSION}"
+
+      - name: Publish Android library to GitHub Packages
+        working-directory: packages/android
+        env:
+          GITHUB_ACTOR: ${{ github.actor }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: ./gradlew :tokens:publish --no-daemon
+
+      - name: Publish web package to GitHub Packages
+        working-directory: packages/web
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm publish
+
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          # Release notes come from the commit that triggered this run,
+          # i.e. the merge commit that changed the tokens.
+          NOTES="$(git log -1 --format='%s%n%n%b' '${{ github.sha }}')"
+          gh release create "v${VERSION}" --title "v${VERSION}" --notes "${NOTES}"
