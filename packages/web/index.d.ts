@@ -1,5 +1,5 @@
 // GENERATED FILE - DO NOT EDIT.
-// Built by generators/web.mjs from tokens/tokens.json (design tokens v0.1.0).
+// Built by generators/web.mjs from tokens/tokens.json (design tokens v0.1.1).
 // Regenerate with: node generators/web.mjs
 
 export declare const color: {
