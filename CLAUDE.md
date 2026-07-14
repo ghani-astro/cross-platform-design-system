@@ -1,8 +1,25 @@
 # Astro Cross-Platform Design System
 
+## RULE: the branch is always `cross-platform-design-system`
+
+ALL cross-platform design system work in the consumer apps lives on a branch
+named `cross-platform-design-system`. Never wire, build, or demo this system
+from any other branch. The branches live in dedicated worktrees so the main
+checkouts stay untouched:
+
+| Repo | Base branch | Worktree with the branch |
+| --- | --- | --- |
+| astro-buyer-android | master | /Users/malikabdulghani/Documents/Astro/astro-buyer-android-cpds |
+| astro-buyer-ios | main | /Users/malikabdulghani/Documents/Astro/astro-buyer-ios-cpds |
+| astro-mobile-web | production | /Users/malikabdulghani/Documents/Astro/astro-mobile-web-cpds |
+
+This hub repo itself uses `main` (github.com/ghani-astro/cross-platform-design-system).
+
+---
+
 This directory is the working hub for a large task: unifying Astro's design
 tokens into one cross-platform source of truth that feeds Android, Web, and
-(later) iOS. This file holds the loaded context. Nothing is built here yet.
+iOS. This file holds the loaded context and the implementation state.
 
 Parent folder: `/Users/malikabdulghani/Documents/Astro/` holds all the sibling
 repos referenced below (Android, web, iOS, and the design-system libs).
