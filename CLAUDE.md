@@ -229,8 +229,9 @@ Layout:
   text styles). Seeded from the real Astro values, verified by 4510 assertions.
 - `tokens/platform-names.json`: DTCG path to platform name map (mirror naming:
   android `primaryGalaxy8`, web `galaxy-8`). Generators depend on it.
-- `editor/`: **Nova**, the token editor web app (vendored Backbone + our
-  GitHub Sync feature in `editor/github-sync.js`). Later served on the VPS.
+- `editor/`: **Nova Tools**, the token editor web app (vendored Backbone + our
+  GitHub Sync feature in `editor/github-sync.js`). Authoring tool for Nova.
+  Later served on the VPS.
 - `generators/`: android.mjs, ios.mjs, web.mjs (plain node, no deps).
 - `packages/android/`: Gradle project, AAR `com.astro.design:tokens`
   (GitHub Packages Maven). Compose ui-graphics/ui-unit only, minSdk 24.
@@ -244,10 +245,16 @@ Layout:
 
 ## 6. Naming conventions (IMPORTANT)
 
-- **Nova** = the editor web app in `editor/` (the Backbone-based token editor
-  with the Sync button that opens PRs to this repo). When the user says
-  "nova", they mean this app.
-- **Astro web lite** = the frontend web app repo `astro-mobile-web`.
+- **Nova** = Astro's design system itself. The whole system: the canonical
+  tokens plus the generated packages (`com.astro.design:tokens` AAR,
+  `AstroDesignTokens` SPM, `@ghani-astro/design-tokens` npm) that Android, iOS,
+  and web consume. When the user says "Nova", they mean the design system.
+- **Nova Tools** = the web app we built in `editor/` (the Backbone-based token
+  editor with the Sync button that opens PRs to this repo). It is the authoring
+  tool FOR Nova, not Nova itself. When the user says "Nova Tools", they mean
+  this app.
+- **Astro web lite** = the frontend web app repo `astro-mobile-web` (a consumer
+  of Nova, not the editor).
 - Integration branches in the three consumer repos are all named
   `cross-platform-design-system`: astro-buyer-android off `master`,
   astro-buyer-ios off `main`, astro-mobile-web off `production`.
@@ -260,14 +267,41 @@ against the LATEST published package version:
    (or latest vX.Y.Z tag).
 2. Android (astro-buyer-android, branch cross-platform-design-system): set
    `astro-design-tokens-version` in gradle/libs.versions.toml to the latest,
-   build the app (stagingDebug variant).
+   build the app with the PROD variant (`:shop:assembleProdDebug`, applicationId
+   `com.astro.shop`). Use prod, not staging (see run schemes below).
 3. iOS (astro-buyer-ios, branch cross-platform-design-system): bump the
    AstroDesignTokens version rule in xcodegen/packages.yml, run xcodegen,
-   resolve packages and build (DebugStaging scheme).
+   resolve packages and build with the DebugProd scheme (not DebugStaging).
 4. Web (astro-mobile-web, branch cross-platform-design-system): bump
    `@ghani-astro/design-tokens` in apps/astro-mobile-web/package.json,
    pnpm install, run tsc-check and build.
 5. Report per-platform results honestly.
+
+### Run schemes (which build to run on device/sim)
+
+- **Android: prod build** (`prodDebug`, applicationId `com.astro.shop`). This is
+  the build the user is logged into on the emulator. Do NOT run staging:
+  - staging (`com.astro.shop.native.staging`) has a PRE-EXISTING crash on the
+    home (`FORCE_SHOW_POPUP_PIN` empty timestamp to Long in
+    `CustomerHomeContainerViewModel.kt:489`), unrelated to our tokens.
+  - The prod debug build is signed with the project debug keystore
+    (`shop/debug.keystore`), same cert as the installed `com.astro.shop`, so
+    `adb install -r -d shop/build/outputs/apk/prod/debug/shop-prod-debug.apk`
+    updates it in place and KEEPS the login session.
+  - Launch with `adb shell am start -n com.astro.shop/.view.activity.ShopMainActivity`.
+    Do NOT use `SplashActivity` (disabled at runtime, alias is
+    `SpecialLauncherAlias`) and do NOT use a bare LAUNCHER monkey intent (it
+    matches LeakCanary's launcher in debug builds).
+  - Build needs JAVA_HOME set to the Android Studio JBR
+    (`/Applications/Android Studio.app/Contents/jbr/Contents/Home`); no system JDK.
+- **iOS: DebugProd scheme.** Build for a simulator with
+  `xcodebuild -project Astro.xcodeproj -scheme DebugProd -destination
+  'platform=iOS Simulator,name=iPhone 17 Pro' build`, then
+  `xcrun simctl install booted <Astro.app>` and
+  `xcrun simctl launch booted com.astro.shop.prod` (DebugProd bundle id).
+- **Web: dev server** on localhost:3000 (`pnpm dev` in
+  apps/astro-mobile-web; needs a local `.env.local`, and the Firebase init is
+  dev-guarded so it runs without Firebase keys).
 
 ## 8. Credentials
 
@@ -275,7 +309,7 @@ against the LATEST published package version:
 - The user placed a classic PAT (repo + read:packages) themselves in:
   astro-buyer-android/local.properties (gpr.user/gpr.key) and ~/.npmrc
   (npm.pkg.github.com _authToken). NEVER read, print, or move those values.
-- Nova stores its PAT in browser localStorage, pasted by the user in its
+- Nova Tools stores its PAT in browser localStorage, pasted by the user in its
   Sync settings form.
 - CI publishing uses GITHUB_TOKEN only, no extra secrets.
 
